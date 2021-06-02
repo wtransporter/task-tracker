@@ -9,6 +9,13 @@
         </li>
         <li class="c-sidebar-nav-title">Manage projects</li>
         <li class="c-sidebar-nav-item">
+            <a class="c-sidebar-nav-link" href="{{ route('projects.create') }}">
+                <svg class="c-sidebar-nav-icon">
+                    <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-puzzle') }}"></use>
+                </svg> {{ __('New Project') }}
+            </a>
+        </li>
+        <li class="c-sidebar-nav-item">
             <a class="c-sidebar-nav-link" href="{{ route('projects.index') }}">
                 <svg class="c-sidebar-nav-icon">
                     <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-puzzle') }}"></use>
