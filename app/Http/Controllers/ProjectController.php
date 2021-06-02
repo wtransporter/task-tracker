@@ -27,7 +27,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('projects.create', ['categories' => []]);
+        return view('projects.create');
     }
 
     /**
