@@ -14,7 +14,7 @@
                             </ul>
                         @endif
                         <div class="card-body">
-                            <form action="{{ route('projects.create') }}" method="post">
+                            <form action="{{ route('projects.store') }}" method="post">
                                 @csrf
                                 <div class="form-group">
                                     <label for="title">{{ __('Title') }}</label>
@@ -30,7 +30,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="categories">{{ __('Categories') }}</label>
-                                    <select class="form-control" name="categories" id="category" size="5" multiple="">
+                                    <select class="form-control" name="categories[]" id="category" size="5" multiple="">
                                         @foreach($categories as $category)
                                             <option value="{{ $category->id }}">
                                                 {{ $category->name }}

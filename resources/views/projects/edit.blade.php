@@ -29,6 +29,19 @@
                                     <label for="note">{{ __('Note') }}</label>
                                     <textarea class="form-control" id="note" rows="3" name="note">{{ $project->note }}</textarea>
                                 </div>
+                                <div class="form-group">
+                                    <label for="categories">{{ __('Categories') }}</label>
+                                    <select class="form-control" name="categories[]" id="category" size="5" multiple="">
+                                        @foreach($categories as $category)
+                                            <option value="{{ $category->id }}"
+                                                @if (in_array($category->name, $selectedCategories))
+                                                    selected
+                                                @endif>
+                                                {{ $category->name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
                                 <div>
                                     <button class="btn btn-sm btn-info" type="submit"> {{ __('Save') }}</button>
                                 </div>

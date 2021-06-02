@@ -4,6 +4,9 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
+                        @if (session('message'))
+                            <div class="alert alert-success m-3">{{ session('message') }}</div>
+                        @endif
                         <div class="card-body">
                             <table class="table table-responsive-sm table-striped">
                                 <thead>

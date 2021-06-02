@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Project;
-use Illuminate\Http\Request;
 
 class ProjectController extends Controller
 {
@@ -33,12 +32,16 @@ class ProjectController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  UpdateProjectRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UpdateProjectRequest $request)
     {
-        //
+        $project = auth()->user()->projects()
+            ->create($request->only(['title', 'content', 'note']));
+        $project->categories()->attach($request->categories);
+
+        return redirect()->route('projects.index')->with('message', 'New project created');
     }
 
     /**
@@ -60,7 +63,8 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        return view('projects.edit', compact('project'));
+        $selectedCategories = $project->categories()->pluck('name')->toArray();
+        return view('projects.edit', compact('project', 'selectedCategories'));
     }
 
     /**
@@ -72,7 +76,8 @@ class ProjectController extends Controller
      */
     public function update(UpdateProjectRequest $request, Project $project)
     {
-        $project->update($request->validated());
+        $project->update($request->only('title', 'content', 'note'));
+        $project->categories()->sync($request->categories);
 
         return redirect()->route('home');
     }
