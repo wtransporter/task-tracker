@@ -20,4 +20,9 @@ class Project extends Model
     {
         return $this->belongsToMany(Category::class)->withTimestamps();
     }
+
+    public function tasks()
+    {
+        return $this->hasMany(Task::class);
+    }
 }
