@@ -4,6 +4,9 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
+                        @if (session('message'))
+                            <div class="alert alert-success m-3">{{ session('message') }}</div>
+                        @endif
                         @if ($errors->any())
                             <ul class="alert alert-danger m-3">
                             @foreach ($errors->all() as $error)
@@ -51,8 +54,8 @@
                     <div class="card">
                         <div class="card-header"><i class="fa fa-align-justify"></i> {{ __('List of Tasks') }}</div>
                         <div class="card-body">
-                            <div class="col-lg-6">
-                                @livewire('tasks-table', ['tasks' => $project->tasks])
+                            <div class="col-lg-10 col-xl-6">
+                                @livewire('tasks-table', ['project' => $project])
                             </div>
                         </div>
                     </div>

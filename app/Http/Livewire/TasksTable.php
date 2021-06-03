@@ -6,15 +6,12 @@ use Livewire\Component;
 
 class TasksTable extends Component
 {
-    public $tasks;
-
-    public function mount($tasks)
-    {
-        $this->tasks = $tasks;
-    }
+    public $project;
 
     public function render()
     {
-        return view('livewire.tasks-table');
+        $tasks = $this->project->tasks()->get();
+
+        return view('livewire.tasks-table', compact('tasks'));
     }
 }
