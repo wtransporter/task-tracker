@@ -48,6 +48,14 @@
                             </form>
                         </div>
                     </div>
+                    <div class="card">
+                        <div class="card-header"><i class="fa fa-align-justify"></i> {{ __('List of Tasks') }}</div>
+                        <div class="card-body">
+                            <div class="col-lg-6">
+                                @livewire('tasks-table', ['tasks' => $project->tasks])
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
