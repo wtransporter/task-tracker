@@ -1,6 +1,6 @@
 <table class="table table-responsive-sm table-striped">
     <tbody>
-        @foreach ($tasks as $task)
+        @forelse ($tasks as $task)
             <tr>
                 <td>{{ $task->title }}</td>
                 <td>
@@ -34,6 +34,10 @@
                     </div>
                 </td>
             </tr>
-        @endforeach
+        @empty
+            <tr>
+                {{ __('No tasks yet') }}
+            </tr>
+        @endforelse
     </tbody>
 </table>

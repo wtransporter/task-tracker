@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreTaskRequest;
 use App\Models\Task;
 use App\Models\Project;
 use Illuminate\Http\Request;
@@ -31,12 +32,15 @@ class TaskController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  StoreTaskRequest  $request
+     * @param  Project $project
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreTaskRequest $request, Project $project)
     {
-        //
+        $project->tasks()->create($request->validated());
+
+        return redirect()->route('projects.edit', $project->id)->with('message', 'Task added');
     }
 
     /**

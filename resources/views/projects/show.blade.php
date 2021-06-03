@@ -25,8 +25,8 @@
                         @endif
                         <div class="card-body">
                             <ul class="list-group">
-                                <div class="col-md-10 col-xl-6">
-                                @foreach ($project->tasks as $task)
+                                <div class="col-md-10 col-xl-6 p-0">
+                                @forelse ($project->tasks as $task)
                                     <li class="list-group-item d-flex list-group-item-action justify-content-between align-items-center">
                                         {{ $task->title }}
                                         <div class="d-flex">
@@ -46,7 +46,11 @@
                                             </div>
                                         </div>
                                     </li>
-                                @endforeach
+                                @empty
+                                    <strong class="text-danger">
+                                        {{ __('No tasks yet') }}
+                                    </strong>
+                                @endforelse
                                 </div>
                             </ul>
                         </div>
