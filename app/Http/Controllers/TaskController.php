@@ -57,24 +57,28 @@ class TaskController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  Project $project
+     * @param  Task $task
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Project $project, Task $task)
     {
-        //
+        return view('tasks.edit', ['project' => $project, 'task' => $task]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  StoreTaskRequest $request
+     * @param  Project $project
+     * @param  Task $task
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreTaskRequest $request, Project $project, Task $task)
     {
-        //
+        $task->update($request->validated());
+
+        return redirect()->route('projects.tasks.edit', [$project, $task])->with('message', 'Task updated');
     }
 
     /**
