@@ -11,6 +11,17 @@ class Task extends Model
 
     protected $guarded = [];
 
+    public static function boot()
+    {
+        parent::boot();
+
+        static::created(function($task) {
+            $task->update([
+                'code' => $task->project_id . $task->id
+            ]);
+        });
+    }
+
     public function project()
     {
         return $this->belongsTo(Project::class);

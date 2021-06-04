@@ -61,8 +61,8 @@
                     </div>
                     <div class="card">
                         @if ($errors->storetask->any())
-                            <div class="alert alert-danger">
-                                <ul>
+                            <div class="alert alert-danger p-2 m-2">
+                                <ul class=" m-0">
                                     @foreach ($errors->storetask->all() as $error)
                                         <li>{{ $error }}</li>
                                     @endforeach

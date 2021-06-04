@@ -27,8 +27,11 @@
                             <ul class="list-group">
                                 <div class="col-md-10 col-xl-6 p-0">
                                 @forelse ($project->tasks as $task)
-                                    <li class="list-group-item d-flex list-group-item-action justify-content-between align-items-center">
-                                        {{ $task->title }}
+                                    <li class="list-group-item d-flex list-group-item-action justify-content-between align-items-center p-2">
+                                        <div>
+                                            <strong class="mr-2">#{{ $task->code }}</strong>
+                                            {{ $task->title }}
+                                        </div>
                                         <div class="d-flex">
                                             <div class="w-4 mr-2">
                                                 <a href="" class="text-info">
