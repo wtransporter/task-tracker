@@ -90,6 +90,10 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
+        if ($project->tasks()->count() > 0) {
+            return redirect()->back()->withErrors('Project that has tasks cannot be deleted.');
+        }
+
         $project->delete();
 
         return redirect()->route('projects.index')->with('message', 'Project successfully deleted.');
