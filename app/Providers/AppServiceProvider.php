@@ -29,7 +29,14 @@ class AppServiceProvider extends ServiceProvider
             $categories = \Cache::rememberForever('categories', function () {
                 return Category::all();
             });
+            $taskTypes = \Cache::rememberForever('taskTypes', function () {
+                return \DB::table('tasktypes')
+                        ->select('id', 'name', 'color')
+                        ->get();
+            });
+            
             $view->with('categories', $categories);
+            $view->with('taskTypes', $taskTypes);
         });
 
         Paginator::useBootstrap();

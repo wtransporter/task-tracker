@@ -3,6 +3,9 @@
         @forelse ($tasks as $task)
             <tr>
                 <td><strong>#{{ $task->code }}</strong></td>
+                <td>
+                    <div class="mr-2 align-items-center badge badge-{{ $task->tasktype->color ?? 'info' }} badge-pill">{{ $task->tasktype->name }}</div>
+                </td>
                 <td>{{ $task->title }}</td>
                 <td>
                     @if (!is_null($task->finished_at))

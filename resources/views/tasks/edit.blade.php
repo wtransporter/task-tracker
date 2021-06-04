@@ -44,6 +44,22 @@
                                             <label for="description">{{ __('Description') }}</label>
                                             <textarea class="form-control" name="description" rows="5" id="task-textarea">{{ $task->description }}</textarea>
                                         </div>
+                                        <div class="form-group col-6 col-md-5 col-lg-4 col-xl-3">
+                                            <label for="tasktype_id">{{ __('Type') }}</label>
+                                            <select class="form-control" name="tasktype_id" id="tasktype_id">
+                                                <option value="">
+                                                    -- Select Type --
+                                                </option>
+                                                @foreach($taskTypes as $taskType)
+                                                    <option value="{{ $taskType->id }}"
+                                                        @if ($taskType->id == $task->tasktype_id)
+                                                            selected
+                                                        @endif>
+                                                        {{ $taskType->name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

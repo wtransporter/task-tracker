@@ -15,7 +15,7 @@ class ProjectController extends Controller
     public function index()
     {
         return view('projects.index', [
-            'projects' => Project::paginate(15)
+            'projects' => Project::with('tasks', 'tasks.tasktype')->paginate(15)
         ]);
     }
 

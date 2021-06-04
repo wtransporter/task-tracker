@@ -28,7 +28,8 @@ class StoreTaskRequest extends FormRequest
         return [
             'title' => 'required',
             'description' => 'required',
-            'note' => 'sometimes|required'
+            'note' => 'sometimes|required',
+            'tasktype_id' => 'required'
         ];
     }
 }
