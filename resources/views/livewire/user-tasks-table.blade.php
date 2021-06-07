@@ -1,6 +1,6 @@
 <li class="list-group-item d-flex list-group-item-action justify-content-between align-items-center p-2">
     <div class="d-flex w-full">
-        <strong class="mr-2">#{{ $task->code }}</strong>
+        <strong class="mr-2">#{{ $task->id }}</strong>
         <div class="mr-2 d-flex align-items-center badge badge-{{ $task->tasktype->color ?? 'info' }} badge-pill">{{ $task->tasktype->name }}</div>
         <div class="d-flex w-full justify-content-between align-items-center">
             @if (!is_null($task->finished_at))
