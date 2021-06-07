@@ -1,5 +1,13 @@
+<div>
 <table class="table table-responsive-sm table-striped">
     <tbody>
+            <th>
+                <a wire:click.prevent="orderById" href="#">ID</a>
+            </th>
+            <th>Type</th>
+            <th>Title</th>
+            <th>Is active</th>
+            <th>Actions</th>
         @forelse ($tasks as $task)
             <tr>
                 <td><strong>#{{ $task->id }}</strong></td>
@@ -46,3 +54,5 @@
         @endforelse
     </tbody>
 </table>
+{{ $tasks->links() }}
+</div>

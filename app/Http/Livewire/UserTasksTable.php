@@ -3,20 +3,27 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class UserTasksTable extends Component
 {
-    public $task;
+    use WithPagination;
 
-    public function toggleStatus()
+    protected $paginationTheme = 'bootstrap';
+    public $project;
+
+    public function toggleStatus($id)
     {
-        is_null($this->task->finished_at) ? $this->task->finished_at = now() : $this->task->finished_at = null;
+        $task = $this->project->tasks()->find($id)->first();
+        is_null($task->finished_at) ? $task->finished_at = now() : $task->finished_at = null;
         
-        $this->task->save();
+        $task->save();
     }
 
     public function render()
     {
-        return view('livewire.user-tasks-table');
+        $tasks = $this->project->tasks()->paginate(10);
+        
+        return view('livewire.user-tasks-table', compact('tasks'));
     }
 }

@@ -24,17 +24,7 @@
                             </ul>
                         @endif
                         <div class="card-body">
-                            <ul class="list-group">
-                                <div class="col-md-10 col-xl-6 p-0">
-                                @forelse ($project->tasks as $task)
-                                    @livewire('user-tasks-table', ['task' => $task])
-                                @empty
-                                    <strong class="text-danger">
-                                        {{ __('No tasks yet') }}
-                                    </strong>
-                                @endforelse
-                                </div>
-                            </ul>
+                            @livewire('user-tasks-table', ['project' => $project])
                         </div>
                     </div>
                 </div>
