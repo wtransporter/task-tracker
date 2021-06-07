@@ -13,6 +13,13 @@ class TasksTable extends Component
     public $project;
     public $sortById = 'asc';
 
+    protected $listeners = ['taskAssigned'];
+
+    public function taskAssigned($message)
+    {
+        session()->flash('message', $message);
+    }
+
     public function orderById()
     {
         $this->sortById == 'desc' ? $this->sortById = 'asc' : $this->sortById = 'desc';

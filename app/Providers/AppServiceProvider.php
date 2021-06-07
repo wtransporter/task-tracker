@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Category;
+use App\Models\User;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 
@@ -34,9 +35,13 @@ class AppServiceProvider extends ServiceProvider
                         ->select('id', 'name', 'color')
                         ->get();
             });
+            $allUsers = \Cache::rememberForever('users', function () {
+                return User::all();
+            });
             
             $view->with('categories', $categories);
             $view->with('taskTypes', $taskTypes);
+            $view->with('allUsers', $allUsers);
         });
 
         Paginator::useBootstrap();

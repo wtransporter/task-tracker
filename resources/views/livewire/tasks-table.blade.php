@@ -1,4 +1,9 @@
-<div>
+<div class="fadeIn">
+    @if (session('message'))
+    <div class="alert alert-success">
+        {{ session('message') }}
+    </div>
+    @endif
 <table class="table table-responsive-sm table-striped">
     <tbody>
             <th>
@@ -6,6 +11,7 @@
             </th>
             <th>Type</th>
             <th>Title</th>
+            <th>Assigned to</th>
             <th>Is active</th>
             <th>Actions</th>
         @forelse ($tasks as $task)
@@ -15,6 +21,9 @@
                     <div class="mr-2 align-items-center badge badge-{{ $task->tasktype->color ?? 'info' }} badge-pill">{{ $task->tasktype->name }}</div>
                 </td>
                 <td>{{ $task->title }}</td>
+                <td>
+                    @livewire('assign-task-to-user', ['task' => $task], key($task->id))
+                </td>
                 <td>
                     @if (!is_null($task->finished_at))
                         <span class="badge badge-success">Finished</span>
