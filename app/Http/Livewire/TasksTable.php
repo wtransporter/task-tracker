@@ -19,7 +19,7 @@ class TasksTable extends Component
 
     public function taskAssigned($message)
     {
-        session()->flash('message', $message);
+        session()->flash('task-message', $message);
     }
 
     public function orderById()

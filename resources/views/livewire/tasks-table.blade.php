@@ -1,7 +1,7 @@
 <div class="fadeIn">
-    @if (session('message'))
+    @if (session('task-message'))
     <div class="alert alert-success">
-        {{ session('message') }}
+        {{ session('task-message') }}
     </div>
     @endif
     <div class="row">
