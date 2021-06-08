@@ -59,7 +59,7 @@
                             </div>
                         </div>
                     </div>
-                    @can('create')
+                    @can('create', \App\Models\Task::class)
                     <div class="card">
                         @if ($errors->storetask->any())
                             <div class="alert alert-danger p-2 m-2">
