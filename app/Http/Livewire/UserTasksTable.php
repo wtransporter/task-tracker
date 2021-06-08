@@ -2,15 +2,17 @@
 
 namespace App\Http\Livewire;
 
+use App\Traits\Toggleable;
 use Livewire\Component;
 use Livewire\WithPagination;
 
 class UserTasksTable extends Component
 {
-    use WithPagination;
+    use WithPagination, Toggleable;
 
     protected $paginationTheme = 'bootstrap';
     public $project;
+    public $active = false;
 
     public function toggleStatus($id)
     {
@@ -22,7 +24,10 @@ class UserTasksTable extends Component
 
     public function render()
     {
-        $tasks = $this->project->tasks()->paginate(10);
+        $tasks = $this->project->tasks()
+            ->when($this->active, function($query) {
+                return $query->whereNull('finished_at');
+            })->paginate(10);
         
         return view('livewire.user-tasks-table', compact('tasks'));
     }

@@ -4,14 +4,21 @@
         {{ session('message') }}
     </div>
     @endif
+    <div class="row">
+        <div class="col-lg-12 mb-4">
+            <button wire:click="toggleActive" class="btn btn-info btn-sm">
+                {{ $active ? 'All' : 'Active' }} tasks
+            </button>
+        </div>
+    </div>
 <table class="table table-responsive-sm table-striped">
     <tbody>
-            <th>
+            <th class="w-20">
                 <a wire:click.prevent="orderById" href="#">ID</a>
             </th>
-            <th>Type</th>
+            <th class="w-20">Type</th>
             <th>Title</th>
-            <th>Assigned to</th>
+            <th class="w-64">Assigned to</th>
             <th>Is active</th>
             <th>Actions</th>
         @forelse ($tasks as $task)

@@ -1,4 +1,11 @@
 <div>
+    <div class="row">
+        <div class="col-lg-12 mb-4">
+            <button wire:click="toggleActive" class="btn btn-info btn-sm">
+                {{ $active ? 'All' : 'Active' }} tasks
+            </button>
+        </div>
+    </div>
     <table class="table table-responsive-sm table-striped">
         <tbody>
             <th>ID</th>

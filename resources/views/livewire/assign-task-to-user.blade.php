@@ -1,5 +1,5 @@
 <div class="d-flex align-items-center justify-content-between">
-    <select wire:model="user_id" class="form-control h-8" name="" id="user_id">
+    <select wire:model="user_id" class="form-control h-6 py-0" name="" id="user_id">
         <option value="">-----</option>
         @foreach ($allUsers as $user)
             <option value="{{ $user->id }}">
