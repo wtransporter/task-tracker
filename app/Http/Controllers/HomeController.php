@@ -23,7 +23,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $projects = auth()->user()->projects()->get();
-        return view('home', compact('projects'));
+        $tasks = auth()->user()->tasks()
+            ->whereNull('finished_at')->get();
+        return view('home', compact('tasks'));
     }
 }

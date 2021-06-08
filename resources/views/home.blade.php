@@ -16,22 +16,36 @@
                                     {{ session('status') }}
                                 </div>
                             @endif
-
                             <div class="row">
-                            @foreach ($projects as $project)
+                            @foreach ($tasks as $task)
                                 <div class="col-md-4 col-xl-3">
                                     <div class="card">
                                         <div class="card-header h6 p-2 m-0">
-                                            <a href="{{ route('projects.tasks.index', $project) }}">
-                                                {{ $project->title }}
+                                            <a href="{{ route('projects.tasks.show', [$task->project, $task]) }}">
+                                                #{{$task->id }}
                                             </a>
+                                            <span class="badge badge-{{ $task->tasktype->color }} float-right">
+                                                {{ $task->tasktype->name }}
+                                            </span>
+                                            <div class="row col-lg-12">
+                                                <a href="{{ route('projects.tasks.index', $task->project) }}">
+                                                    <small class="text-dark">
+                                                        {{ $task->project->title }}
+                                                    </small>
+                                                </a>
+                                            </div>
                                         </div>
                                         <div class="card-body p-2">
-                                            {!! \Str::limit($project->content, 50) !!}
+                                            {!! \Str::limit($task->title, 50) !!}
                                         </div>
                                         <div class="card-footer d-flex align-items-center justify-content-between p-2">
-                                            <span class="badge badge-success mr-1">Task</span>
-                                            <small>{{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $project->created_at)->format('m.d.Y') }}</small>
+                                            <div>
+                                                <span class="badge badge-{{ $task->finished_at ? 'success' : 'danger' }} mr-1">
+                                                    {{ $task->finished_at ? 'Finished' : 'Active' }}
+                                                </span>
+                                                <small>{{ $task->finished_at ? \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $task->finished_at)->format('m.d.Y H:i:s') : '' }}</small>
+                                            </div>
+                                            <small>{{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $task->created_at)->format('m.d.Y H:i:s') }}</small>
                                         </div>
                                     </div>
                                 </div>
