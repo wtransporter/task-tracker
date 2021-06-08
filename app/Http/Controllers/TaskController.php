@@ -11,22 +11,12 @@ class TaskController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
+     * @param Project $project
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Project $project)
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return view('tasks.index', compact('project'));
     }
 
     /**
@@ -44,17 +34,6 @@ class TaskController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  Project $project
@@ -63,6 +42,8 @@ class TaskController extends Controller
      */
     public function edit(Project $project, Task $task)
     {
+        $this->authorize('update', $task);
+
         return view('tasks.edit', ['project' => $project, 'task' => $task]);
     }
 
@@ -76,6 +57,8 @@ class TaskController extends Controller
      */
     public function update(StoreTaskRequest $request, Project $project, Task $task)
     {
+        $this->authorize('update', $task);
+
         $task->update($request->validated());
 
         return redirect()->route('projects.tasks.edit', [$project, $task])->with('message', 'Task updated');
@@ -90,6 +73,8 @@ class TaskController extends Controller
      */
     public function destroy(Project $project, Task $task)
     {
+        $this->authorize('delete', $task);
+
         $task->delete();
 
         return redirect()->route('projects.edit', $project)->with('message', 'Task delted');

@@ -22,7 +22,11 @@ Route::get('/', function () {
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
-    Route::resource('projects', ProjectController::class);
+    
+    Route::group(['middleware' => ['is_admin']], function () {
+        Route::resource('projects', ProjectController::class);
+    });
+
     Route::resource('projects.tasks', TaskController::class);
 });
 

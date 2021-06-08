@@ -59,6 +59,7 @@
                             </div>
                         </div>
                     </div>
+                    @can('create')
                     <div class="card">
                         @if ($errors->storetask->any())
                             <div class="alert alert-danger p-2 m-2">
@@ -107,6 +108,7 @@
                             </div>
                         </form>
                     </div>
+                    @endcan
                 </div>
             </div>
         </div>

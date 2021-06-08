@@ -7,6 +7,7 @@
                 </svg> Dashboard
             </a>
         </li>
+        @can('project_manage')
         <li class="c-sidebar-nav-title">Manage projects</li>
         <li class="c-sidebar-nav-item">
             <a class="c-sidebar-nav-link" href="{{ route('projects.create') }}">
@@ -22,6 +23,7 @@
                 </svg> {{ __('All Projects') }}
             </a>
         </li>
+        @endcan
         <li class="c-sidebar-nav-item">
             <a class="c-sidebar-nav-link" href="{{ route('logout') }}"
                 onclick="event.preventDefault();

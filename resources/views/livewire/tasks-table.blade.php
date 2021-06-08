@@ -40,6 +40,7 @@
                 </td>
                 <td>
                     <div class="d-flex">
+                        @can('edit', $task)
                         <div class="w-4 mr-2">
                             <a href="{{ route('projects.tasks.edit', [$project, $task]) }}" class="text-info">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -47,6 +48,8 @@
                                 </svg>
                             </a>
                         </div>
+                        @endcan
+                        @can('delete', $task)
                         <div class="w-4 mr-2">
                             <form id="deleteTask{{$task->id}}" action="{{ route('projects.tasks.destroy', [$project, $task]) }}" method="POST" class="d-none">
                                 @csrf
@@ -60,6 +63,7 @@
                                 </svg>
                             </a>
                         </div>
+                        @endcan
                     </div>
                 </td>
             </tr>

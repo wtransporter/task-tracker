@@ -3,6 +3,11 @@
         <div class="fade-in">
             <div class="row">
                 <div class="col-lg-12">
+                    @if ($errors->any())
+                        <div class="alert alert-danger" role="alert">
+                            {{ $errors->first() }}
+                        </div>
+                    @endif
                     <div class="card">
                         <div class="card-header">{{ __('Projects') }}</div>
                         <div class="card-body">
@@ -17,7 +22,7 @@
                                 <div class="col-md-4 col-xl-3">
                                     <div class="card">
                                         <div class="card-header h6 p-2 m-0">
-                                            <a href="{{ route('projects.show', $project) }}">
+                                            <a href="{{ route('projects.tasks.index', $project) }}">
                                                 {{ $project->title }}
                                             </a>
                                         </div>

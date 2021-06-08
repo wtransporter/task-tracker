@@ -12,7 +12,7 @@ class UserTasksTable extends Component
 
     protected $paginationTheme = 'bootstrap';
     public $project;
-    public $active = false;
+    public $active = true;
 
     public function toggleStatus($id)
     {
