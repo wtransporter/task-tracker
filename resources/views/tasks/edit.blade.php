@@ -60,6 +60,10 @@
                                                 @endforeach
                                             </select>
                                         </div>
+                                        <div class="form-group col-6 col-md-5 col-lg-4 col-xl-3 px-0">
+                                            <label for="started_at">{{ __('Started at') }}</label>
+                                            <input value="{{ $task->started_at ? $task->started_at->format('d-m-Y H:i:s') : '' }}" class="form-control datetime" name="started_at" id="started_at">
+                                        </div>
                                     </div>
                                 </div>
                             </div>

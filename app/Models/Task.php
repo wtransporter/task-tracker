@@ -11,6 +11,17 @@ class Task extends Model
 
     protected $guarded = [];
 
+    /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = [
+        'created_at',
+        'updated_at',
+        'started_at'
+    ];
+
     public function project()
     {
         return $this->belongsTo(Project::class);

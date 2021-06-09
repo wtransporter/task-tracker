@@ -29,7 +29,22 @@ class StoreTaskRequest extends FormRequest
             'title' => 'required',
             'description' => 'required',
             'note' => 'sometimes|required',
-            'tasktype_id' => 'required'
+            'tasktype_id' => 'required',
+            'started_at' => 'nullable|sometimes|date'
         ];
+    }
+
+    /**
+     * Prepare the data for validation.
+     *
+     * @return void
+     */
+    protected function prepareForValidation()
+    {
+        if (!is_null($this->started_at)) {
+            $this->merge([
+                'started_at' => \Carbon\Carbon::createFromFormat('d-m-Y H:i:s', $this->started_at),
+            ]);
+        }
     }
 }

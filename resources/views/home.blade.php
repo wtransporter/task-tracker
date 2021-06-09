@@ -21,7 +21,7 @@
                                 <div class="col-md-4 col-xl-3">
                                     <div class="card">
                                         <div class="card-header h6 p-2 m-0">
-                                            <a href="{{ route('projects.tasks.show', [$task->project, $task]) }}">
+                                            <a href="{{ route('projects.tasks.edit', [$task->project, $task]) }}">
                                                 #{{$task->id }}
                                             </a>
                                             <span class="badge badge-{{ $task->tasktype->color }} float-right">

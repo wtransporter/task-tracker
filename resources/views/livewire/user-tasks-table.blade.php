@@ -28,6 +28,8 @@
                         <del class="text-success">
                         @endif
                             {{ $task->title }}
+                        <span class="small mr-4">
+                            {{ $task->started_at ? __('Started: ') . $task->started_at : '' }}</span>
                         @if (!is_null($task->finished_at))
                         </del>
                         <span class="small mr-4">{{ __('Finished: ') }} {{ date(('d.m.Y H:i'), strtotime($task->finished_at)) }}</span>
