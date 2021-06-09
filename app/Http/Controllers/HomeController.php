@@ -24,6 +24,7 @@ class HomeController extends Controller
     public function index()
     {
         $tasks = auth()->user()->tasks()
+            ->with(['project', 'tasktype'])
             ->whereNull('finished_at')->get();
         return view('home', compact('tasks'));
     }

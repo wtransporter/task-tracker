@@ -25,6 +25,7 @@ class UserTasksTable extends Component
     public function render()
     {
         $tasks = $this->project->tasks()
+            ->with('tasktype')
             ->when($this->active, function($query) {
                 return $query->whereNull('finished_at');
             })->paginate(10);

@@ -30,9 +30,12 @@ class TasksTable extends Component
     public function render()
     {
         $tasks = $this->project->tasks()
+            ->with('tasktype')
             ->when($this->active, function ($query) {
                 return $query->whereNull('finished_at');
-            })->orderBy('id', $this->sortById)->paginate(10);
+            })
+            ->orderBy('id', $this->sortById)
+            ->paginate(10);
 
         return view('livewire.tasks-table', compact('tasks'));
     }
