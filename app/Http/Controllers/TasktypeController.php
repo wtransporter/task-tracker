@@ -20,6 +20,29 @@ class TasktypeController extends Controller
     }
 
     /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view('admin.tasktypes.create');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  StoreTasktypeRequest  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(StoreTasktypeRequest $request)
+    {
+        $type = Tasktype::create($request->validated());
+
+        return redirect()->route('tasktypes.create')->with('message', $type->name . ' type created');
+    }
+
+    /**
      * Show the form for editing the specified resource.
      *
      * @param  Tasktype $tasktype
@@ -34,7 +57,7 @@ class TasktypeController extends Controller
      * Update the specified resource in storage.
      *
      * @param  StoreTasktypeRequest $request
-     * @param  TTasktype $tasktype
+     * @param  Tasktype $tasktype
      * @return \Illuminate\Http\Response
      */
     public function update(StoreTasktypeRequest $request, Tasktype $tasktype)

@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreTasktypeRequest extends FormRequest
@@ -24,7 +25,7 @@ class StoreTasktypeRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
+            'name' => ['required', Rule::unique('tasktypes', 'name')->ignore($this->tasktype)],
             'color' => 'nullable|sometimes'
         ];
     }
