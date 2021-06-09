@@ -23,6 +23,21 @@
                 </svg> {{ __('All Projects') }}
             </a>
         </li>
+        <li class="c-sidebar-nav-title">{{ __('Manage task types') }}</li>
+        <li class="c-sidebar-nav-item">
+            <a class="c-sidebar-nav-link" href="{{ route('tasktypes.create') }}">
+                <svg class="c-sidebar-nav-icon">
+                    <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-puzzle') }}"></use>
+                </svg> {{ __('New type') }}
+            </a>
+        </li>
+        <li class="c-sidebar-nav-item">
+            <a class="c-sidebar-nav-link" href="{{ route('tasktypes.index') }}">
+                <svg class="c-sidebar-nav-icon">
+                    <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-puzzle') }}"></use>
+                </svg> {{ __('All Types') }}
+            </a>
+        </li>
         @endcan
         <li class="c-sidebar-nav-item">
             <a class="c-sidebar-nav-link" href="{{ route('logout') }}"
