@@ -14,9 +14,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
-                        @if (session('message'))
-                            <div class="alert alert-success m-3">{{ session('message') }}</div>
-                        @endif
+                        <x-message key="task-message" />
                         @if ($errors->storetask->any())
                             <div class="alert alert-danger p-2 m-2">
                                 <ul class=" m-0">

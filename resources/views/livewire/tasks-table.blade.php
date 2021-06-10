@@ -1,9 +1,5 @@
 <div class="fadeIn">
-    @if (session('task-message'))
-    <div class="alert alert-success">
-        {{ session('task-message') }}
-    </div>
-    @endif
+    <x-message key="task-message" />
     <div class="row">
         <div class="col-lg-12 mb-4">
             <button wire:click="toggleActive" class="btn btn-info btn-sm">

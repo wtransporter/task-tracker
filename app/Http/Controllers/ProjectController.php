@@ -79,7 +79,7 @@ class ProjectController extends Controller
         $project->update($request->only('title', 'content', 'note'));
         $project->categories()->sync($request->categories);
 
-        return redirect()->route('home');
+        return redirect()->route('home')->with('message', 'Project successfully updated.');
     }
 
     /**

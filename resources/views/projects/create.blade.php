@@ -4,15 +4,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
-                        @if ($errors->any())
-                            <ul class="alert alert-danger m-3">
-                            @foreach ($errors->all() as $error)
-                                <li>
-                                    {{ $error }}
-                                </li>
-                            @endforeach
-                            </ul>
-                        @endif
+                        <x-error class="m-3" />
                         <div class="card-body">
                             <form action="{{ route('projects.store') }}" method="post">
                                 @csrf

@@ -4,18 +4,8 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
-                        @if (session('message'))
-                            <div class="alert alert-success m-3">{{ session('message') }}</div>
-                        @endif
-                        @if ($errors->any())
-                            <ul class="alert alert-danger m-3">
-                            @foreach ($errors->all() as $error)
-                                <li>
-                                    {{ $error }}
-                                </li>
-                            @endforeach
-                            </ul>
-                        @endif
+                        <x-message />
+                        <x-error />
                         <div class="card-body">
                             <form action="{{ route('projects.update', $project) }}" method="post">
                                 @csrf

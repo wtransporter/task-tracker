@@ -3,19 +3,11 @@
         <div class="fade-in">
             <div class="row">
                 <div class="col-lg-12">
-                    @if ($errors->any())
-                        <div class="alert alert-danger" role="alert">
-                            {{ $errors->first() }}
-                        </div>
-                    @endif
+                    <x-error class="m-3" />
                     <div class="card">
                         <div class="card-header">{{ __('Projects') }}</div>
                         <div class="card-body">
-                            @if (session('status'))
-                                <div class="alert alert-success" role="alert">
-                                    {{ session('status') }}
-                                </div>
-                            @endif
+                            <x-message />
                             <div class="row">
                             @foreach ($tasks as $task)
                                 <div class="col-md-4 col-xl-3">
