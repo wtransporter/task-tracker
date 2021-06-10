@@ -14,6 +14,7 @@ class TasksTable extends Component
     public $project;
     public $sortById = 'asc';
     public $active = true;
+    public $search;
 
     protected $listeners = ['taskAssigned'];
 
@@ -27,12 +28,20 @@ class TasksTable extends Component
         $this->sortById == 'desc' ? $this->sortById = 'asc' : $this->sortById = 'desc';
     }
 
+    public function clearSearch()
+    {
+        $this->search = null;
+    }
+
     public function render()
     {
         $tasks = $this->project->tasks()
             ->with('tasktype')
             ->when($this->active, function ($query) {
                 return $query->whereNull('finished_at');
+            })
+            ->when($this->search, function ($query) {
+                return $query->where('title', 'LIKE', '%'.$this->search.'%');
             })
             ->orderBy('id', $this->sortById)
             ->paginate(10);

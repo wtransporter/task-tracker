@@ -13,6 +13,7 @@ class UserTasksTable extends Component
     protected $paginationTheme = 'bootstrap';
     public $project;
     public $active = true;
+    public $search;
 
     public function toggleStatus($id)
     {
@@ -22,13 +23,23 @@ class UserTasksTable extends Component
         $task->save();
     }
 
+    public function clearSearch()
+    {
+        $this->search = null;
+    }
+
     public function render()
     {
         $tasks = $this->project->tasks()
             ->with('tasktype')
+            ->where('user_id', auth()->id())
             ->when($this->active, function($query) {
                 return $query->whereNull('finished_at');
-            })->paginate(10);
+            })
+            ->when($this->search, function ($query) {
+                return $query->where('title', 'LIKE', '%'.$this->search.'%');
+            })
+            ->paginate(10);
         
         return view('livewire.user-tasks-table', compact('tasks'));
     }

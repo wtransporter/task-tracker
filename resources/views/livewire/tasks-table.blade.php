@@ -1,10 +1,14 @@
 <div class="fadeIn">
     <x-message key="task-message" />
     <div class="row">
-        <div class="col-lg-12 mb-4">
+        <div class="col-lg-12 mb-4 d-flex justify-content-between">
             <button wire:click="toggleActive" class="btn btn-info btn-sm">
                 {{ $active ? 'All' : 'Active' }} tasks
             </button>
+            <div class="w-64 d-flex justify-content-between">
+                <input wire:model.debounce.600ms="search" class="form-control form-control-sm" id="search" type="text" placeholder="search">
+                <button wire:click="clearSearch" class="ml-2 btn btn-square btn-sm btn-light">Clear</button>
+            </div>
         </div>
     </div>
 <table class="table table-responsive-sm table-striped">
