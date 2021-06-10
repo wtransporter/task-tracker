@@ -4,19 +4,8 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
-                        @if (session('message'))
-                            <div class="alert alert-success m-3">{{ session('message') }}</div>
-                        @endif
-                        @if ($errors->storetask->any())
-                            <div class="alert alert-danger p-2 m-2">
-                                <ul class=" m-0">
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
-
+                        <x-message class="m-3" />
+                        <x-error class="m-3" />
                         <form
                             action="{{ route('tasktypes.update', [$tasktype]) }}" method="POST">
                             @csrf

@@ -4,12 +4,8 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
-                        @if (session('message'))
-                            <div class="alert alert-success m-3">{{ session('message') }}</div>
-                        @endif
-                        @if ($errors->any())
-                            <div class="alert alert-danger m-3">{{ $errors->first() }}</div>
-                        @endif
+                        <x-message class="m-3" />
+                        <x-error class="m-3" />
                         <form
                             action="{{ route('tasktypes.store') }}" method="POST">
                             @csrf
