@@ -29,7 +29,7 @@
                 </td>
                 <td>{{ $task->title }}</td>
                 <td>
-                    {{ $task->user->name }}
+                    {!! $task->user->name ?? '<span class="badge badge-warning">Unassigned</span>' !!}
                 </td>
                 <td>
                     @if (!is_null($task->finished_at))
