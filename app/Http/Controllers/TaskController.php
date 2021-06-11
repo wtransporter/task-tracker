@@ -61,7 +61,7 @@ class TaskController extends Controller
 
         $task->update($request->validated());
 
-        return redirect()->route('projects.tasks.edit', [$project, $task])->with('message', 'Task updated');
+        return redirect()->route('projects.tasks.edit', [$project, $task])->with('task-message', 'Task updated');
     }
 
     /**

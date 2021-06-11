@@ -29,7 +29,7 @@
                 </td>
                 <td>{{ $task->title }}</td>
                 <td>
-                    @livewire('assign-task-to-user', ['task' => $task], key($task->id))
+                    {{ $task->user->name }}
                 </td>
                 <td>
                     @if (!is_null($task->finished_at))

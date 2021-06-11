@@ -14,7 +14,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
-                        <x-message key="task-message" />
+                        <x-message class="m-3" key="task-message" />
                         @if ($errors->storetask->any())
                             <div class="alert alert-danger p-2 m-2">
                                 <ul class=" m-0">
@@ -54,6 +54,20 @@
                                                             selected
                                                         @endif>
                                                         {{ $taskType->name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="p-0 form-group col-6 col-md-5 col-lg-4 col-xl-3">
+                                            <label for="user_id">{{ __('Assign to') }}</label>
+                                            <select class="form-control" name="user_id" id="user_id">
+                                                <option value="">-- Assign User --</option>
+                                                @foreach ($project->members as $user)
+                                                    <option value="{{ $user->id }}"
+                                                        @if($task->user_id == $user->id)
+                                                            selected
+                                                        @endif>
+                                                        {{ $user->name }}
                                                     </option>
                                                 @endforeach
                                             </select>

@@ -103,18 +103,35 @@
                                             <label for="description">{{ __('Description') }}</label>
                                             <textarea class="form-control" name="description" rows="5" id="task-textarea">{{ old('description') }}</textarea>
                                         </div>
-                                        <div class="p-0 form-group col-6 col-md-5 col-lg-4 col-xl-3">
-                                            <label for="tasktype_id">{{ __('Type') }}</label>
-                                            <select class="form-control" name="tasktype_id" id="tasktype_id">
-                                                <option value="">
-                                                    -- Select Type --
-                                                </option>
-                                                @foreach($taskTypes as $taskType)
-                                                    <option value="{{ $taskType->id }}">
-                                                        {{ $taskType->name }}
+                                        <div class="d-flex flex-column flex-lg-row justify-content-between">
+                                            <div class="p-0 form-group col-6 col-md-5 col-lg-4 col-xl-3">
+                                                <label for="tasktype_id">{{ __('Type') }}</label>
+                                                <select class="form-control" name="tasktype_id" id="tasktype_id">
+                                                    <option value="">
+                                                        -- Select Type --
                                                     </option>
-                                                @endforeach
-                                            </select>
+                                                    @foreach($taskTypes as $taskType)
+                                                        <option value="{{ $taskType->id }}">
+                                                            {{ $taskType->name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="p-0 form-group col-6 col-md-5 col-lg-4 col-xl-3">
+                                                <label for="user_id">{{ __('Assign to') }}</label>
+                                                <select class="form-control" name="user_id" id="user_id">
+                                                    <option value="">-- Assign User --</option>
+                                                    @foreach ($project->members as $user)
+                                                        <option value="{{ $user->id }}">
+                                                            {{ $user->name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-6 col-md-5 col-lg-3 col-xl-3 px-0">
+                                                <label for="started_at">{{ __('Started at') }}</label>
+                                                <input class="form-control datetime" name="started_at" id="started_at">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
