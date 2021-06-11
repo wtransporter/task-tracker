@@ -2,8 +2,10 @@
 
 namespace App\Exceptions;
 
-use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -36,6 +38,18 @@ class Handler extends ExceptionHandler
     {
         $this->reportable(function (Throwable $e) {
             //
+        });
+
+        $this->renderable(function (AccessDeniedHttpException $e, $request) {
+
+            $previous = $e->getPrevious();
+
+            if ($previous instanceof AuthorizationException) {
+                return redirect()->route('home')
+                    ->withErrors(['error' => '403 | You are not allowed to see this page.']);
+            }
+
+            return null; 
         });
     }
 }
