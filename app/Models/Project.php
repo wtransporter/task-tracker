@@ -25,4 +25,9 @@ class Project extends Model
     {
         return $this->hasMany(Task::class);
     }
+
+    public function completedTasks()
+    {
+        return $this->hasMany(Task::class)->whereNotNull('finished_at');
+    }
 }

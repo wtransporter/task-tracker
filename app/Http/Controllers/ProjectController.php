@@ -15,7 +15,10 @@ class ProjectController extends Controller
     public function index()
     {
         return view('projects.index', [
-            'projects' => Project::with('user')->paginate(15)
+            'projects' => Project::with('user')
+                ->withCount(['tasks'])
+                ->withCount('completedTasks')
+                ->paginate(15)
         ]);
     }
 

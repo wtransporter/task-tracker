@@ -14,6 +14,7 @@
                                         <th>Owner</th>
                                         <th>Date created</th>
                                         <th>Title</th>
+                                        <th>Done/Total</th>
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>
@@ -25,6 +26,11 @@
                                             <td>{{ $project->user->name }}</td>
                                             <td>{{ $project->created_at }}</td>
                                             <td>{{ $project->title }}</td>
+                                            <td>
+                                                <span class="badge badge-info">
+                                                    {{ $project->completed_tasks_count . '/' . $project->tasks_count }}
+                                                </span>
+                                            </td>
                                             <td><span class="badge badge-success">Active</span></td>
                                             <td>
                                                 <div class="d-flex">
