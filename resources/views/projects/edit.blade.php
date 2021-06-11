@@ -4,8 +4,8 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
-                        <x-message />
-                        <x-error />
+                        <x-message class="m-3" />
+                        <x-error class="m-3"/>
                         <div class="card-body">
                             <form action="{{ route('projects.update', $project) }}" method="post">
                                 @csrf
@@ -38,6 +38,32 @@
                                 <div>
                                     <button class="btn btn-sm btn-info" type="submit"> {{ __('Save') }}</button>
                                 </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fa fa-align-justify"></i> {{ __('Assigned users') }}
+                        </div>
+                        <div class="card-body">
+                            <form action="{{ route('invitations.store', $project) }}" method="POST">
+                                @csrf
+                                <div class="form-group row">
+                                    <div class="col-md-9 col-form-label">
+                                        @foreach ($allUsers as $user)
+                                        <div class="form-check checkbox">
+                                            <input class="form-check-input" name="users[{{ $user->id }}]" 
+                                                id="check{{ $user->id }}" type="checkbox" 
+                                                value="{{ $user->id }}"
+                                                @if($project->members->find($user->id))
+                                                    checked
+                                                @endif>
+                                            <label class="form-check-label" for="check{{ $user->id }}">{{ $user->name }}</label>
+                                        </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                                <button class="btn btn-info btn-sm" >{{ __('Add / remove') }}</button>
                             </form>
                         </div>
                     </div>

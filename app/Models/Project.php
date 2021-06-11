@@ -30,4 +30,20 @@ class Project extends Model
     {
         return $this->hasMany(Task::class)->whereNotNull('finished_at');
     }
+
+    public function members()
+    {
+        return $this->belongsToMany(User::class, 'project_member')->withTimestamps();
+    }
+
+    public function invite($users)
+    {
+        if (is_null($users)) {
+            return $this->members()->detach();
+        }
+
+        $users = User::whereIn('id', $users)->pluck('id')->toArray();
+
+        return $this->members()->sync($users);
+    }
 }
