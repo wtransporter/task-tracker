@@ -3,13 +3,13 @@
         <div class="fade-in">
             <div class="row">
                 <div class="col-lg-12">
-                    <x-error class="m-3" />
+                    <x-error />
                     <div class="card">
                         <div class="card-header">{{ __('Projects') }}</div>
                         <div class="card-body">
                             <x-message />
                             <div class="row">
-                                @foreach ($projects as $project)
+                                @forelse ($projects as $project)
                                 <div class="col-md-4 col-xl-3">
                                     <div class="card">
                                         <div class="card-header h6 p-2 m-0">
@@ -35,7 +35,11 @@
                                         </div>
                                     </div>
                                 </div>
-                                @endforeach
+                                @empty
+                                    <div class="alert alert-info w-full mx-3 m-0">
+                                        {{ __('You are not a member of any project yet.') }}
+                                    </div>
+                                @endforelse
                             </div>
                         </div>
                     </div>
