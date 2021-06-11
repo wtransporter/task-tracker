@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Project;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,9 +24,17 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $tasks = auth()->user()->tasks()
-            ->with(['project', 'tasktype'])
-            ->whereNull('finished_at')->get();
-        return view('home', compact('tasks'));
+        if (auth()->user()->is_admin) {
+            $projects = Project::withCount(['tasks', 'completedTasks'])
+                ->latest()
+                ->paginate(10);
+        } else {
+            $projects = auth()->user()->assignedProjects()
+                ->withCount(['tasks', 'completedTasks'])
+                ->latest()
+                ->paginate(10);
+        }
+
+        return view('home', compact('projects'));
     }
 }

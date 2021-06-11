@@ -27,5 +27,8 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         Gate::define('project_manage', fn(User $user) => $user->is_admin);
+        Gate::define('view_tasks', function($user, $project) {
+            return $user->is_admin || $project->members->contains($user);
+        });
     }
 }

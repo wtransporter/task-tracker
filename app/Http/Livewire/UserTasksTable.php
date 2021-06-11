@@ -32,7 +32,6 @@ class UserTasksTable extends Component
     {
         $tasks = $this->project->tasks()
             ->with('tasktype')
-            ->where('user_id', auth()->id())
             ->when($this->active, function($query) {
                 return $query->whereNull('finished_at');
             })
