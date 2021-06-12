@@ -22,6 +22,17 @@ class TaskController extends Controller
     }
 
     /**
+     * Show the form for creating a new resource.
+     *
+     * @param Project $project
+     * @return \Illuminate\Http\Response
+     */
+    public function create(Project $project)
+    {
+        return view('tasks.create', compact('project'));
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  StoreTaskRequest  $request
