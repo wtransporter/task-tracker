@@ -43,7 +43,7 @@ class TaskController extends Controller
     {
         $project->tasks()->create($request->validated());
 
-        return redirect()->route('projects.edit', $project->id)->with('task-message', 'Task added');
+        return redirect()->route('projects.tasks.create', $project->id)->with('task-message', 'Task added');
     }
 
     /**
@@ -90,6 +90,6 @@ class TaskController extends Controller
 
         $task->delete();
 
-        return redirect()->route('projects.edit', $project)->with('task-message', 'Task delted');
+        return redirect()->route('projects.tasks.create', $project)->with('task-message', 'Task delted');
     }
 }

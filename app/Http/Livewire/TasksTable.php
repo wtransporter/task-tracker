@@ -28,6 +28,14 @@ class TasksTable extends Component
         $this->sortById == 'desc' ? $this->sortById = 'asc' : $this->sortById = 'desc';
     }
 
+    public function toggleStatus($id)
+    {
+        $task = $this->project->tasks()->find($id)->first();
+        is_null($task->finished_at) ? $task->finished_at = now() : $task->finished_at = null;
+        
+        $task->save();
+    }
+
     public function clearSearch()
     {
         $this->search = null;
