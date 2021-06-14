@@ -33,20 +33,6 @@ class TaskController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  StoreTaskRequest  $request
-     * @param  Project $project
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreTaskRequest $request, Project $project)
-    {
-        $project->tasks()->create($request->validated());
-
-        return redirect()->route('projects.tasks.create', $project->id)->with('task-message', 'Task added');
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  Project $project

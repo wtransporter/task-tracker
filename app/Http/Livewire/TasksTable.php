@@ -17,7 +17,10 @@ class TasksTable extends Component
     public $active = true;
     public $search;
 
-    protected $listeners = ['taskAssigned'];
+    protected $listeners = [
+        'taskAssigned',
+        'taskAdded' => '$refresh'
+    ];
 
     public function taskAssigned($message)
     {

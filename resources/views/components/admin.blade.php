@@ -193,6 +193,11 @@
             next: 'fas fa-chevron-right'
             }
         })
+
+        window.addEventListener('closeModal', event => {
+            $('#newTaskModal').modal('hide');
+        })
+
     </script>
 </body>
 
