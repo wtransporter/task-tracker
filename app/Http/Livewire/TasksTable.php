@@ -12,7 +12,8 @@ class TasksTable extends Component
 
     protected $paginationTheme = 'bootstrap';
     public $project;
-    public $sortById = 'asc';
+    public $sort = true;
+    public $sortField = '';
     public $active = true;
     public $search;
 
@@ -23,9 +24,15 @@ class TasksTable extends Component
         session()->flash('task-message', $message);
     }
 
-    public function orderById()
+    public function sortBy($field)
     {
-        $this->sortById == 'desc' ? $this->sortById = 'asc' : $this->sortById = 'desc';
+        if ($this->sortField == $field) {
+            $this->sort = !$this->sort;
+        } else {
+            $this->sort = true;
+        }
+
+        $this->sortField = $field;
     }
 
     public function toggleStatus($id)
@@ -51,7 +58,9 @@ class TasksTable extends Component
             ->when($this->search, function ($query) {
                 return $query->where('title', 'LIKE', '%'.$this->search.'%');
             })
-            ->orderBy('id', $this->sortById)
+            ->when($this->sortField, function ($query) {
+                return $query->orderBy($this->sortField, $this->sort ? 'asc' : 'desc');
+            })
             ->paginate(10);
 
         return view('livewire.tasks-table', compact('tasks'));

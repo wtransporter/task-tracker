@@ -14,10 +14,18 @@
 <table class="table table-responsive-sm table-striped">
     <tbody>
             <th class="w-20">
-                <a wire:click.prevent="orderById" href="#">ID</a>
+                <div class="d-flex">
+                    <a wire:click.prevent="sortBy('id')" href="#">ID</a>
+                    <x-sort-icon field="id" :sortField="$sortField" :sort="$sort"/>
+                </div>
             </th>
             <th class="w-20">Type</th>
-            <th>Title</th>
+            <th>
+                <div class="d-flex">
+                    <a wire:click.prevent="sortBy('title')" href="#">Title</a>
+                    <x-sort-icon field="title" :sortField="$sortField" :sort="$sort"/>
+                </div>
+            </th>
             <th>Started at</th>
             <th>Finished at</th>
             <th class="w-64">Assigned to</th>
