@@ -30,7 +30,7 @@ class TaskPolicy
      */
     public function update(User $user, Task $task)
     {
-        return $user->is_admin;
+        return $user->is_admin || $task->project->members->contains($user);
     }
 
     /**
