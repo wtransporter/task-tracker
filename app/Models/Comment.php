@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Task extends Model
+class Comment extends Model
 {
     use HasFactory;
 
@@ -18,27 +18,16 @@ class Task extends Model
      */
     protected $dates = [
         'created_at',
-        'updated_at',
-        'started_at'
+        'updated_at'
     ];
 
-    public function project()
+    public function task()
     {
-        return $this->belongsTo(Project::class);
-    }
-
-    public function tasktype()
-    {
-        return $this->belongsTo(Tasktype::class);
+        return $this->belongsTo(Task::class);
     }
 
     public function user()
     {
         return $this->belongsTo(User::class);
-    }
-
-    public function comments()
-    {
-        return $this->hasMany(Comment::class)->latest();
     }
 }

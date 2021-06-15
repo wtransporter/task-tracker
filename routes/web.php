@@ -6,6 +6,7 @@ use App\Http\Controllers\TaskController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TasktypeController;
+use App\Http\Controllers\TaskCommentController;
 use App\Http\Controllers\ProjectInvitationController;
 
 /*
@@ -31,6 +32,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('tasktypes', TasktypeController::class);
         Route::resource('categories', CategoryController::class);
         Route::post('invitations/{project}', [ProjectInvitationController::class, 'store'])->name('invitations.store');
+        Route::post('tasks/{task}/comments', [TaskCommentController::class, 'store'])->name('tasks.comments.store');
     });
 
     Route::resource('projects.tasks', TaskController::class);

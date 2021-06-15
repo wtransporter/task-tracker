@@ -138,6 +138,14 @@
     width: 24rem;
 }
 
+.w-112 {
+    width: 28rem;
+}
+
+.w-120 {
+    width: 30rem;
+}
+
 .w-auto {
     width: auto;
 }
