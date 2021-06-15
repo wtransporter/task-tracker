@@ -43,7 +43,11 @@
                         </div>
                         <div class="form-group col-6 col-md-5 col-lg-3 col-xl-3 px-0">
                             <label for="startedAt">{{ __('Started at') }}</label>
-                            <input wire:model="startedAt" class="form-control datetime" name="startedAt" id="startedAt">
+                            <div wire:ignore>
+                                <x-datepicker-input wire:model.defer="startedAt" 
+                                    id="startedAt"
+                                    field="startedAt"/>
+                            </div>
                             <x-input-error for="startedAt" />
                         </div>
                     </div>
@@ -52,7 +56,7 @@
         </div>
         <div class="card-footer d-flex justify-content-between">
             <button wire:click.prevent="store" class="btn btn-sm btn-info" type="submit"> {{ __('Save Task') }}</button>
-            <a class="btn btn-secondary" data-dismiss="modal">Close</a>
+            <a wire:click="resetAll" class="btn btn-secondary" data-dismiss="modal">Close</a>
         </div>
     </form>
 </div>
