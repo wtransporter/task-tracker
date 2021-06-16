@@ -78,6 +78,11 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <x-status-dropdown taskStatusId="{{$task->status_id}}" class="p-0 col-6 col-md-5 col-lg-4 col-xl-3" />
+                                    </div>
+                                </div>
                             </div>
                             <div class="card-footer">
                                 <button class="btn btn-sm btn-info" type="submit"> {{ __('Update Task') }}</button>
