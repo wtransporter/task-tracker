@@ -85,6 +85,20 @@
                                             <label for="due_date">{{ __('Due date') }}</label>
                                             <input value="{{ $task->due_date ? $task->due_date->format('d-m-Y H:i:s') : '' }}" class="form-control date" name="due_date" id="due_date">
                                         </div>
+                                        <div class="p-0 form-group col-6 col-md-5 col-lg-4 col-xl-3">
+                                            <label for="priority_id">{{ __('Priority') }}</label>
+                                            <select class="form-control" name="priority_id" id="priority_id">
+                                                <option value="">-- Select --</option>
+                                                @foreach ($priorities as $priority)
+                                                    <option value="{{ $priority->id }}"
+                                                        @if($task->priority_id == $priority->id)
+                                                            selected
+                                                        @endif>
+                                                        {{ $priority->name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

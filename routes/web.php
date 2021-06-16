@@ -6,6 +6,7 @@ use App\Http\Controllers\TaskController;
 use App\Http\Controllers\StatusController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\PriorityController;
 use App\Http\Controllers\TasktypeController;
 use App\Http\Controllers\TaskCommentController;
 use App\Http\Controllers\ProjectInvitationController;
@@ -33,6 +34,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('tasktypes', TasktypeController::class);
         Route::resource('categories', CategoryController::class);
         Route::resource('statuses', StatusController::class);
+        Route::resource('priorities', PriorityController::class);
         Route::post('invitations/{project}', [ProjectInvitationController::class, 'store'])->name('invitations.store');
         Route::post('tasks/{task}/comments', [TaskCommentController::class, 'store'])->name('tasks.comments.store');
     });

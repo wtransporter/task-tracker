@@ -30,6 +30,7 @@
             <th>Finished at</th>
             <th class="w-64">Assigned to</th>
             <th class="w-30">Due date</th>
+            <th>Priority</th>
             <th>Status</th>
             <th>Actions</th>
         @forelse ($tasks as $task)
@@ -66,6 +67,13 @@
                     <small>
                         {{ $task->due_date ? $task->due_date->format('d.m.Y') : '' }}
                     </small>
+                </td>
+                <td>
+                    @if (!is_null($task->priority_id))
+                        <span class="text-secondary' }}">{{ $task->priority->name }}</span>
+                    @else
+                        <span class="text-primary">{{ __('Not set') }}</span>
+                    @endif
                 </td>
                 <td>
                     @if (!is_null($task->status_id))

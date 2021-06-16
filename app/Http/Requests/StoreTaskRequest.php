@@ -33,7 +33,8 @@ class StoreTaskRequest extends FormRequest
             'user_id' => 'nullable|sometimes',
             'started_at' => 'nullable|sometimes|date',
             'status_id' => 'nullable|sometimes|exists:statuses,id',
-            'due_date' => 'nullable|sometimes|date'
+            'due_date' => 'nullable|sometimes|date',
+            'priority_id' => 'required'
         ];
     }
 

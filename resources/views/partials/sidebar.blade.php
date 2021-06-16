@@ -68,6 +68,14 @@
                 </svg> {{ __('All Statuses') }}
             </a>
         </li>
+        <li class="c-sidebar-nav-title">{{ __('Manage priorities') }}</li>
+        <li class="c-sidebar-nav-item">
+            <a class="c-sidebar-nav-link" href="{{ route('priorities.index') }}">
+                <svg class="c-sidebar-nav-icon">
+                    <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-puzzle') }}"></use>
+                </svg> {{ __('Priorities') }}
+            </a>
+        </li>
         @endcan
         <li class="c-sidebar-nav-item">
             <a class="c-sidebar-nav-link" href="{{ route('logout') }}"

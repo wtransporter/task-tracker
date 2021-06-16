@@ -2,9 +2,10 @@
 
 namespace App\Providers;
 
-use App\Models\Category;
-use App\Models\Status;
 use App\Models\User;
+use App\Models\Status;
+use App\Models\Category;
+use App\Models\Priority;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 
@@ -43,11 +44,15 @@ class AppServiceProvider extends ServiceProvider
             $statuses = \Cache::rememberForever('statuses', function () {
                 return Status::all();
             });
+            $priorities = \Cache::rememberForever('priorities', function () {
+                return Priority::all();
+            });
             
             $view->with('categories', $categories);
             $view->with('taskTypes', $taskTypes);
             $view->with('allUsers', $allUsers);
             $view->with('statuses', $statuses);
+            $view->with('priorities', $priorities);
         });
 
         Paginator::useBootstrap();
