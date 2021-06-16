@@ -81,6 +81,10 @@
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <x-status-dropdown taskStatusId="{{$task->status_id}}" class="p-0 col-6 col-md-5 col-lg-4 col-xl-3" />
+                                        <div class="form-group col-6 col-md-5 col-lg-4 col-xl-3 px-0">
+                                            <label for="due_date">{{ __('Due date') }}</label>
+                                            <input value="{{ $task->due_date ? $task->due_date->format('d-m-Y H:i:s') : '' }}" class="form-control date" name="due_date" id="due_date">
+                                        </div>
                                     </div>
                                 </div>
                             </div>

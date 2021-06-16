@@ -32,7 +32,8 @@ class StoreTaskRequest extends FormRequest
             'tasktype_id' => 'required',
             'user_id' => 'nullable|sometimes',
             'started_at' => 'nullable|sometimes|date',
-            'status_id' => 'nullable|sometimes|exists:statuses,id'
+            'status_id' => 'nullable|sometimes|exists:statuses,id',
+            'due_date' => 'nullable|sometimes|date'
         ];
     }
 

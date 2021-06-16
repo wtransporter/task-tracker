@@ -14,6 +14,7 @@ class CreateTask extends Component
     public $userId;
     public $startedAt;
     public $status_id;
+    public $due_date;
 
     protected function rules()
     {
@@ -23,7 +24,8 @@ class CreateTask extends Component
             'tasktypeId' => 'required',
             'userId' => 'nullable|sometimes',
             'startedAt' => 'nullable|sometimes|date',
-            'status_id' => 'nullable|sometimes'
+            'status_id' => 'nullable|sometimes',
+            'due_date' => 'nullable|sometimes|date'
         ];
     }
 
@@ -42,7 +44,8 @@ class CreateTask extends Component
             'tasktype_id' => $this->tasktypeId,
             'user_id' => $this->userId,
             'started_at' => $this->startedAt,
-            'status_id' => $this->status_id
+            'status_id' => $this->status_id,
+            'due_date' => $this->due_date
         ];
     }
 
@@ -74,7 +77,8 @@ class CreateTask extends Component
             'description',
             'tasktypeId',
             'userId',
-            'status_id'
+            'status_id',
+            'due_date'
         ]);
 
         $this->startedAt = now()->format('d-m-Y H:i:s');

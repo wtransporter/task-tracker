@@ -29,6 +29,7 @@
             <th>Started at</th>
             <th>Finished at</th>
             <th class="w-64">Assigned to</th>
+            <th class="w-30">Due date</th>
             <th>Status</th>
             <th>Actions</th>
         @forelse ($tasks as $task)
@@ -60,6 +61,11 @@
                 </td>
                 <td>
                     {!! $task->user->name ?? '<span class="badge badge-warning">Unassigned</span>' !!}
+                </td>
+                <td>
+                    <small>
+                        {{ $task->due_date ? $task->due_date->format('d.m.Y') : '' }}
+                    </small>
                 </td>
                 <td>
                     @if (!is_null($task->status_id))

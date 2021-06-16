@@ -1,10 +1,11 @@
 @props([
     'id',
-    'field'
+    'field',
+    'dateType' => 'datetime'
 ])
 
-<input {{ $attributes }}
-    type="text" class="form-control datetime" id="{{ $id }}"
+<input {{ $attributes->merge(['class' => 'form-control '. $dateType]) }}
+    type="text" id="{{ $id }}"
     data-toggle="datetime" data-target="#{{ $id }}"
     >
 
@@ -22,6 +23,19 @@
                 next: 'fas fa-chevron-right'
             }
         });
+    });
+    
+    $(function () {
+        $('{{ $id }}').datetimepicker({
+            format: 'MM/DD/YYYY',
+            locale: 'en',
+            icons: {
+            up: 'fas fa-chevron-up',
+            down: 'fas fa-chevron-down',
+            previous: 'fas fa-chevron-left',
+            next: 'fas fa-chevron-right'
+            }
+        })
     });
 
     document.addEventListener('livewire:load', function () {

@@ -19,7 +19,8 @@ class Task extends Model
     protected $dates = [
         'created_at',
         'updated_at',
-        'started_at'
+        'started_at',
+        'due_date'
     ];
 
     public function project()

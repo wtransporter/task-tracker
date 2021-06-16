@@ -53,6 +53,16 @@
                     </div>
                     <div class="d-flex flex-column flex-lg-row justify-content-between">
                         <x-status-dropdown class="p-0 col-6 col-md-5 col-lg-4 col-xl-3" />
+                        <div class="form-group col-6 col-md-5 col-lg-3 col-xl-3 px-0">
+                            <label for="due_date">{{ __('Due date') }}</label>
+                            <div wire:ignore>
+                                <x-datepicker-input wire:model.defer="due_date" 
+                                    id="due_date"
+                                    field="due_date"
+                                    dateType="date" />
+                            </div>
+                            <x-input-error for="due_date" />
+                        </div>
                     </div>
                 </div>
             </div>

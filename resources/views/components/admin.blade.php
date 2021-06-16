@@ -162,7 +162,7 @@
         })
 
         $('.date').datetimepicker({
-            format: 'MM/DD/YYYY',
+            format: 'DD-MM-YYYY',
             locale: 'en',
             icons: {
             up: 'fas fa-chevron-up',
