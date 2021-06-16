@@ -41,4 +41,9 @@ class Task extends Model
     {
         return $this->hasMany(Comment::class)->latest();
     }
+
+    public function status()
+    {
+        return $this->belongsTo(Status::class);
+    }
 }

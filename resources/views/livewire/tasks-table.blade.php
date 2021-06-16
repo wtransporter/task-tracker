@@ -29,7 +29,7 @@
             <th>Started at</th>
             <th>Finished at</th>
             <th class="w-64">Assigned to</th>
-            <th>Is active</th>
+            <th>Status</th>
             <th>Actions</th>
         @forelse ($tasks as $task)
             <tr>
@@ -62,10 +62,10 @@
                     {!! $task->user->name ?? '<span class="badge badge-warning">Unassigned</span>' !!}
                 </td>
                 <td>
-                    @if (!is_null($task->finished_at))
-                        <span class="badge badge-success">Finished</span>
+                    @if (!is_null($task->status_id))
+                        <span class="text-{{ $task->status->color ?? 'primary' }}">{{ $task->status->name }}</span>
                     @else
-                        <span class="badge badge-danger">Active</span>
+                        <span class="text-primary">{{ __('Not set') }}</span>
                     @endif
                 </td>
                 <td>

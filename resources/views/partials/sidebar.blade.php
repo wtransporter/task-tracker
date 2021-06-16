@@ -53,6 +53,21 @@
                 </svg> {{ __('All Categories') }}
             </a>
         </li>
+        <li class="c-sidebar-nav-title">{{ __('Manage task statuses') }}</li>
+        <li class="c-sidebar-nav-item">
+            <a class="c-sidebar-nav-link" href="{{ route('statuses.create') }}">
+                <svg class="c-sidebar-nav-icon">
+                    <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-puzzle') }}"></use>
+                </svg> {{ __('New task status') }}
+            </a>
+        </li>
+        <li class="c-sidebar-nav-item">
+            <a class="c-sidebar-nav-link" href="{{ route('statuses.index') }}">
+                <svg class="c-sidebar-nav-icon">
+                    <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-puzzle') }}"></use>
+                </svg> {{ __('All Statuses') }}
+            </a>
+        </li>
         @endcan
         <li class="c-sidebar-nav-item">
             <a class="c-sidebar-nav-link" href="{{ route('logout') }}"

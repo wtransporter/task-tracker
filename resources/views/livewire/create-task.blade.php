@@ -51,6 +51,20 @@
                             <x-input-error for="startedAt" />
                         </div>
                     </div>
+                    <div class="d-flex flex-column flex-lg-row justify-content-between">
+                        <div class="p-0 form-group col-6 col-md-5 col-lg-4 col-xl-3">
+                            <label for="status_id">{{ __('Status') }}</label>
+                            <select wire:model="status_id" class="form-control" name="status_id" id="status_id">
+                                <option value="">-- Assign Status --</option>
+                                @foreach ($statuses as $status)
+                                    <option value="{{ $status->id }}">
+                                        {{ $status->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            <x-input-error for="status_id" />
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
