@@ -2,6 +2,14 @@
     <div class="container-fluid">
         <div class="fade-in">
             <div class="row">
+                <div class="col-lg-12 my-2">
+                    <a class="btn btn-info btn-sm text-white"
+                        href="{{ route('projects.tasks.index', $project) }}">
+                        {{ __('Back') }}
+                    </a>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header h5">{{ $project->title }}</div>
