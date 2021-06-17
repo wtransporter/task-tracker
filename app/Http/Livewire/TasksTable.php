@@ -54,7 +54,7 @@ class TasksTable extends Component
     public function render()
     {
         $tasks = $this->project->tasks()
-            ->with(['tasktype', 'user'])
+            ->with(['tasktype', 'user', 'status', 'priority'])
             ->when($this->active, function ($query) {
                 return $query->whereNull('finished_at');
             })

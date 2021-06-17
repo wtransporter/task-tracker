@@ -36,7 +36,7 @@
                     <div class="card">
                         <div class="card-header"><i class="fa fa-align-justify"></i> {{ __('List of Tasks') }}</div>
                         <div class="card-body">
-                            <div class="col-lg-10 col-xl-12 p-0 m-0">
+                            <div class="col-xl-12 p-0 m-0">
                                 @livewire('tasks-table', ['project' => $project])
                             </div>
                         </div>

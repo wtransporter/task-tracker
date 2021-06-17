@@ -20,7 +20,8 @@ class Task extends Model
         'created_at',
         'updated_at',
         'started_at',
-        'due_date'
+        'due_date',
+        'finished_at'
     ];
 
     public function project()
