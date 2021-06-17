@@ -8,7 +8,7 @@
                         <x-error class="m-3"/>
                         <div class="card-header d-flex justify-content-between align-items-center">
                             <span>{{ __('Manage Project') }}</span>
-                            <a href="{{ route('projects.tasks.create', $project) }}" class="btn btn-info btn-sm text-white">
+                            <a href="{{ route('projects.tasks.index', $project) }}" class="btn btn-info btn-sm text-white">
                                 {{ __('Tasks') }}
                             </a>
                         </div>
