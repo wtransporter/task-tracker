@@ -2,8 +2,8 @@
 
 namespace App\Http\Livewire;
 
-use App\Traits\Toggleable;
 use Livewire\Component;
+use App\Traits\Toggleable;
 use Livewire\WithPagination;
 
 class TasksTable extends Component
@@ -11,7 +11,7 @@ class TasksTable extends Component
     use WithPagination, Toggleable;
 
     protected $paginationTheme = 'bootstrap';
-    public $project;
+    public $project = null;
     public $sort = true;
     public $sortField = '';
     public $active = true;
@@ -53,7 +53,18 @@ class TasksTable extends Component
 
     public function render()
     {
-        $tasks = $this->project->tasks()
+        if (is_null($this->project)) {
+            $tasks = $this->userTasks();
+        } else {
+            $tasks = $this->tasks();
+        }
+
+        return view('livewire.tasks-table', compact('tasks'));
+    }
+
+    public function tasks()
+    {
+        return $this->project->tasks()
             ->with(['tasktype', 'user', 'status', 'priority'])
             ->when($this->active, function ($query) {
                 return $query->whereNull('finished_at');
@@ -65,7 +76,21 @@ class TasksTable extends Component
                 return $query->orderBy($this->sortField, $this->sort ? 'asc' : 'desc');
             })
             ->paginate(10);
+    }
 
-        return view('livewire.tasks-table', compact('tasks'));
+    public function userTasks()
+    {
+        return auth()->user()->tasks()
+            ->with('project', 'user', 'tasktype', 'priority', 'status')
+            ->when($this->active, function ($query) {
+                return $query->whereNull('finished_at');
+            })
+            ->when($this->search, function ($query) {
+                return $query->where('title', 'LIKE', '%'.$this->search.'%');
+            })
+            ->when($this->sortField, function ($query) {
+                return $query->orderBy($this->sortField, $this->sort ? 'asc' : 'desc');
+            })
+            ->paginate(10);
     }
 }

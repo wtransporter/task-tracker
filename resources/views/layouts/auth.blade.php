@@ -18,7 +18,7 @@
 <body class="c-app flex-row align-items-center">
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-12">
+            <div class="col-12 col-md-10 col-lg-8 col-xl-6">
                 <div class="card-group">
                     <div class="card p-4">
                         <div class="card-body">

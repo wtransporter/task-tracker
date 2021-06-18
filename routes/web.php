@@ -28,6 +28,9 @@ Route::get('/', function () {
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('/user-tasks', [HomeController::class, 'tasks'])->name('user-tasks');
+    Route::get('/available-tasks', [HomeController::class, 'allTasks'])->name('available-tasks');
+    Route::get('/user-projects', [HomeController::class, 'projects'])->name('user-projects');
     
     Route::group(['middleware' => ['is_admin']], function () {
         Route::resource('projects', ProjectController::class);

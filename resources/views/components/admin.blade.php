@@ -41,6 +41,18 @@
             <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-menu') }}"></use>
             </svg>
         </button>
+            <ul class="c-header-nav d-md-down-none">
+                <li class="c-header-nav-item px-3">
+                    <a class="c-header-nav-link" href="{{ route('home') }}">
+                        {{ __('Dashboard') }}
+                    </a>
+                </li>
+                <li class="c-header-nav-item px-3">
+                    <a class="c-header-nav-link" href="{{ route('user-tasks') }}">
+                        {{ __('My Tasks') }}
+                    </a>
+                </li>
+            </ul>
             <ul class="c-header-nav ml-auto mr-4">
                 <li class="c-header-nav-item d-md-down-none mx-2">
                     <a class="c-header-nav-link" href="#">

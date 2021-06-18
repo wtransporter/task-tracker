@@ -35,6 +35,16 @@ class HomeController extends Controller
                 ->paginate(10);
         }
 
-        return view('home', compact('projects'));
+        return view('pages.home', compact('projects'));
+    }
+    
+    /**
+     * Show the list of Tasks assignet to a user.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function tasks()
+    {
+        return view('pages.user-tasks');
     }
 }
