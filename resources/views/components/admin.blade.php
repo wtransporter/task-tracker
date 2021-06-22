@@ -111,7 +111,7 @@
                         </a>
                         <div class="dropdown-header bg-light py-2"><strong>Settings</strong></div>
                         <a
-                            class="dropdown-item" href="#">
+                            class="dropdown-item" href="{{ route('user.edit') }}">
                             <svg class="c-icon mr-2">
                                 <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-user') }}"></use>
                             </svg> Profile

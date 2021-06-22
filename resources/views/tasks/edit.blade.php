@@ -149,7 +149,7 @@
                                     <tr>
                                         <td class="p-0 w-12" style="vertical-align: middle;">
                                             <div class="c-avatar d-flex align-items-center p-1">
-                                                <img class="c-avatar-img" src="http://127.0.0.1:8000/assets/img/avatars/6.jpg" alt="user@email.com">
+                                                <img class="c-avatar-img" src=" {{ asset('assets/img/avatars/6.jpg') }}" alt="user@email.com">
                                             </div>
                                         </td>
                                         <td class="p-0" style="vertical-align: middle;">

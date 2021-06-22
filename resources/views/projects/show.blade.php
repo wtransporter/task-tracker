@@ -24,7 +24,7 @@
                             </ul>
                         @endif
                         <div class="card-body">
-                            @livewire('user-tasks-table', ['project' => $project])
+                            @livewire('tasks-table', ['project' => $project])
                         </div>
                     </div>
                 </div>

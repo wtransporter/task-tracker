@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\StatusController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PriorityController;
@@ -31,7 +32,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/user-tasks', [HomeController::class, 'tasks'])->name('user-tasks');
     Route::get('/available-tasks', [HomeController::class, 'allTasks'])->name('available-tasks');
     Route::get('/user-projects', [HomeController::class, 'projects'])->name('user-projects');
-    
+    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('user.edit');
+    Route::patch('/profile/{user}', [ProfileController::class, 'update'])->name('user.update');
+
     Route::group(['middleware' => ['is_admin']], function () {
         Route::resource('projects', ProjectController::class);
         Route::resource('tasktypes', TasktypeController::class);
