@@ -21,6 +21,6 @@ class TaskCommentController extends Controller
 
         $task->comments()->create($attributes);
 
-        return redirect()->route('projects.tasks.edit', [$task->project, $task])->with('message', 'You left comment');
+        return redirect()->back()->with(['project' => $task->project, 'task' => $task])->with('message', 'You left comment');
     }
 }

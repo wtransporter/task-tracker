@@ -44,7 +44,9 @@
                             @if (!is_null($task->finished_at))
                             <del class="text-success">
                             @endif
+                            <a href="{{ route('projects.tasks.show', [$project ?: $task->project, $task]) }}">
                                 {{ $task->title }}
+                            </a>
                             @if (!is_null($task->finished_at))
                             </del>
                             @endif

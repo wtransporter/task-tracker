@@ -45,7 +45,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('tasks/{task}/comments', [TaskCommentController::class, 'store'])->name('tasks.comments.store');
     });
 
-    Route::resource('projects.tasks', TaskController::class)->except(['show', 'create', 'store']);
+    Route::resource('projects.tasks', TaskController::class)->except(['create', 'store']);
 });
 
 Auth::routes();

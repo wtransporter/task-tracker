@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreTaskRequest;
 use App\Models\Task;
 use App\Models\Project;
-use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
@@ -22,6 +21,20 @@ class TaskController extends Controller
     }
 
     /**
+     * Show specified resource
+     *
+     * @param Project $project
+     * @param Task $task
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Project $project, Task $task)
+    {
+        $task->load(['user', 'comments', 'comments.user']);
+
+        return view('tasks.show', compact('project', 'task'));
+    }
+
+    /**
      * Show the form for editing the specified resource.
      *
      * @param  Project $project
@@ -31,6 +44,7 @@ class TaskController extends Controller
     public function edit(Project $project, Task $task)
     {
         $this->authorize('update', $task);
+        $task->load(['comments', 'comments.user']);
 
         return view('tasks.edit', ['project' => $project, 'task' => $task]);
     }
