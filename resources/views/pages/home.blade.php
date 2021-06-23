@@ -32,6 +32,11 @@
                                         </div>
                                         <div class="card-footer d-flex align-items-center justify-content-between p-2">
                                             <small>{{ __('Created at:') }} {{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $project->created_at)->format('m.d.Y H:i:s') }}</small>
+                                            <div>
+                                                @foreach ($project->categories as $category)
+                                                    <small class="badge badge-secondary">{{ $category->name }}</small>
+                                                @endforeach
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

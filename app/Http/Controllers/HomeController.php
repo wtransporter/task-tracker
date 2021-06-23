@@ -25,12 +25,12 @@ class HomeController extends Controller
     public function index()
     {
         if (auth()->user()->is_admin) {
-            $projects = Project::withCount(['tasks', 'completedTasks'])
+            $projects = Project::with('categories')->withCount(['tasks', 'completedTasks'])
                 ->latest()
                 ->paginate(10);
         } else {
             $projects = auth()->user()->assignedProjects()
-                ->withCount(['tasks', 'completedTasks'])
+                ->with('categories')->withCount(['tasks', 'completedTasks'])
                 ->latest()
                 ->paginate(10);
         }
