@@ -41,15 +41,15 @@
                     </td>
                     <td>
                         <div class="d-flex justify-content-between align-items-center">
-                            @if (!is_null($task->finished_at))
-                            <del class="text-success">
-                            @endif
                             <a href="{{ route('projects.tasks.show', [$project ?: $task->project, $task]) }}">
-                                {{ $task->title }}
+                                @if (!is_null($task->finished_at))
+                                <del class="text-success">
+                                @endif
+                                    {{ $task->title }}
+                                @if (!is_null($task->finished_at))
+                                </del>
+                                @endif
                             </a>
-                            @if (!is_null($task->finished_at))
-                            </del>
-                            @endif
                         </div>
                     </td>
                     <td>

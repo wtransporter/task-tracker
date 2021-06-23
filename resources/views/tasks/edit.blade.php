@@ -9,7 +9,7 @@
                     </a>
                 </div>
             </div>
-            <div class="row">
+            {{-- <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header h5">{{ $project->title }}</div>
@@ -18,7 +18,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
@@ -37,7 +37,7 @@
                             action="{{ route('projects.tasks.update', [$project, $task]) }}" method="POST">
                             @csrf
                             @method('PUT')
-                            <div class="card-header">{{ __('Update Task') . ' #' . $task->id }}</div>
+                            <div class="card-header">{{ __('Update Task') . ' #' . $task->id }} | {{ $project->title }}</div>
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-sm-12">
