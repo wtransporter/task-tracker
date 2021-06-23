@@ -23,8 +23,17 @@
                             </div>
                         @endif
 
-                        <div class="card-header">
-                            <strong>{{ ($task->tasktype->name ?? __('Undefined')) . ' #' . $task->id }}</strong> | {{ $project->title }}
+                        <div class="card-header d-flex justify-content-between">
+                            <span>
+                                <strong>{{ ($task->tasktype->name ?? __('Undefined')) . ' #' . $task->id }}</strong> | {{ $project->title }}
+                            </span>
+                            @can('update', $task)
+                            <div>
+                                <a href="{{ route('projects.tasks.edit', [$project ?? $task->project, $task]) }}" class="btn btn-outline-info btn-sm">
+                                    {{ __('Edit') }}
+                                </a>
+                            </div>
+                            @endcan
                         </div>
                         <div class="card-body">
                             

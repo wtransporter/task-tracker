@@ -50,7 +50,32 @@
                                             <label for="description">{{ __('Description') }}</label>
                                             <textarea class="form-control" name="description" rows="5" id="task-textarea">{{ $task->description }}</textarea>
                                         </div>
-                                        <div class="form-group col-6 col-md-5 col-lg-4 col-xl-3 px-0">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12 col-lg-6">
+                                        <x-status-dropdown taskStatusId="{{$task->status_id}}" class="p-0 col-sm-12 col-md-6 col-lg-10 col-xl-6" />
+                                        <div class="form-group col-sm-12 col-md-6 col-lg-10 col-xl-6 px-0">
+                                            <label for="due_date">{{ __('Due date') }}</label>
+                                            <input value="{{ $task->due_date ? $task->due_date->format('d-m-Y H:i:s') : '' }}" class="form-control date" name="due_date" id="due_date">
+                                        </div>
+                                        <div class="p-0 form-group col-sm-12 col-md-6 col-lg-10 col-xl-6">
+                                            <label for="priority_id">{{ __('Priority') }}</label>
+                                            <select class="form-control" name="priority_id" id="priority_id">
+                                                <option value="">-- Select --</option>
+                                                @foreach ($priorities as $priority)
+                                                    <option value="{{ $priority->id }}"
+                                                        @if($task->priority_id == $priority->id)
+                                                            selected
+                                                        @endif>
+                                                        {{ $priority->name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-lg-6">
+                                        <div class="form-group col-sm-12 col-md-6 col-lg-10 col-xl-6 px-0">
                                             <label for="tasktype_id">{{ __('Type') }}</label>
                                             <select class="form-control" name="tasktype_id" id="tasktype_id">
                                                 <option value="">
@@ -66,7 +91,7 @@
                                                 @endforeach
                                             </select>
                                         </div>
-                                        <div class="p-0 form-group col-6 col-md-5 col-lg-4 col-xl-3">
+                                        <div class="p-0 form-group col-sm-12 col-md-6 col-lg-10 col-xl-6">
                                             <label for="user_id">{{ __('Assign to') }}</label>
                                             <select class="form-control" name="user_id" id="user_id">
                                                 <option value="">-- Assign User --</option>
@@ -80,32 +105,9 @@
                                                 @endforeach
                                             </select>
                                         </div>
-                                        <div class="form-group col-6 col-md-5 col-lg-4 col-xl-3 px-0">
+                                        <div class="form-group col-sm-12 col-md-6 col-lg-10 col-xl-6 px-0">
                                             <label for="started_at">{{ __('Started at') }}</label>
                                             <input value="{{ $task->started_at ? $task->started_at->format('d-m-Y H:i:s') : '' }}" class="form-control datetime" name="started_at" id="started_at">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <x-status-dropdown taskStatusId="{{$task->status_id}}" class="p-0 col-6 col-md-5 col-lg-4 col-xl-3" />
-                                        <div class="form-group col-6 col-md-5 col-lg-4 col-xl-3 px-0">
-                                            <label for="due_date">{{ __('Due date') }}</label>
-                                            <input value="{{ $task->due_date ? $task->due_date->format('d-m-Y H:i:s') : '' }}" class="form-control date" name="due_date" id="due_date">
-                                        </div>
-                                        <div class="p-0 form-group col-6 col-md-5 col-lg-4 col-xl-3">
-                                            <label for="priority_id">{{ __('Priority') }}</label>
-                                            <select class="form-control" name="priority_id" id="priority_id">
-                                                <option value="">-- Select --</option>
-                                                @foreach ($priorities as $priority)
-                                                    <option value="{{ $priority->id }}"
-                                                        @if($task->priority_id == $priority->id)
-                                                            selected
-                                                        @endif>
-                                                        {{ $priority->name }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
                                         </div>
                                     </div>
                                 </div>
