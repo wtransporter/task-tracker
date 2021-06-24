@@ -61,7 +61,13 @@ class TaskController extends Controller
     {
         $this->authorize('update', $task);
 
-        $task->update($request->validated());
+        $attributes = $request->validated();
+
+        if (!auth()->user()->can('edit_task_description') && isset($attributes['description'])) {
+            unset($attributes['description']);
+        }
+
+        $task->update($attributes);
 
         return redirect()->route('projects.tasks.edit', [$project, $task])->with('task-message', 'Task updated');
     }

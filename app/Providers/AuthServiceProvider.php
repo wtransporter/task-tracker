@@ -30,5 +30,8 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('view_tasks', function($user, $project) {
             return $user->is_admin || $project->members->contains($user);
         });
+        Gate::define('edit_task_description', function(User $user) {
+            return !! $user->is_admin;
+        });
     }
 }
