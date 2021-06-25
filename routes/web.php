@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ActivityController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TaskController;
@@ -44,7 +45,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('invitations/{project}', [ProjectInvitationController::class, 'store'])->name('invitations.store');
         Route::post('tasks/{task}/comments', [TaskCommentController::class, 'store'])->name('tasks.comments.store');
     });
-
+    Route::get('activities', [ActivityController::class, 'index'])->name('activities');
     Route::resource('projects.tasks', TaskController::class)->except(['create', 'store']);
 });
 
