@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Task;
 use Livewire\Component;
 use App\Traits\Toggleable;
 use Livewire\WithPagination;
@@ -38,9 +39,8 @@ class TasksTable extends Component
         $this->sortField = $field;
     }
 
-    public function toggleStatus($id)
+    public function toggleStatus(Task $task)
     {
-        $task = $this->project->tasks()->find($id)->first();
         is_null($task->finished_at) ? $task->finished_at = now() : $task->finished_at = null;
         
         $task->save();

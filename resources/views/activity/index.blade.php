@@ -10,12 +10,9 @@
                             </div>
                             <div class="card-body">
                                 @foreach ($item as $activity)
-                                    @php
-                                        $action = explode('_', $activity->type);
-                                    @endphp
                                     <div class="d-flex justify-content-between w-120">
                                         <h6>
-                                            <span class="text-danger">{{ $activity->user->name }}</span> {{ $action[0] . ' ' . $action[1] }} "{{ $activity->subject->title }}"
+                                            <span class="text-danger">{{ $activity->user->name }}</span> {{ str_replace('_', ' ', $activity->type)  }} "{{ $activity->subject->title }}"
                                         </h6>
                                         <span>{{ $activity->created_at->diffForHumans() }}</span>
                                     </div>

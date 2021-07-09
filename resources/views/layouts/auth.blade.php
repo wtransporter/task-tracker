@@ -12,7 +12,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- CoreUI CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/@coreui/coreui/dist/css/coreui.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ asset('css/coreui.min.css')}}">
 </head>
 
 <body class="c-app flex-row align-items-center">
@@ -33,7 +33,7 @@
     <!-- Optional JavaScript -->
     <!-- Popper.js first, then CoreUI JS -->
     <script src="https://unpkg.com/@popperjs/core@2"></script>
-    <script src="https://unpkg.com/@coreui/coreui/dist/js/coreui.min.js"></script>
+    <script src="{{ asset('js/coreui.bundle.min.js') }}"></script>
 </body>
 
 </html>

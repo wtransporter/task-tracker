@@ -45,6 +45,11 @@ class Project extends Model
 
         $users = User::whereIn('id', $users)->pluck('id')->toArray();
 
+        foreach ($users as $id) {
+            $user = User::whereId($id)->first();
+            $this->recordActivity("invited_{$user->name}_to");
+        }
+
         return $this->members()->sync($users);
     }
 }
