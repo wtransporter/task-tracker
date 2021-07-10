@@ -2,9 +2,30 @@
     <x-message key="task-message" />
     <div class="row">
         <div class="col-lg-12 mb-4 d-flex justify-content-between">
-            <button wire:click="toggleActive" class="btn btn-info btn-sm">
-                {{ $active ? 'All' : 'Active' }} tasks
-            </button>
+            <div class="d-flex">
+                <button wire:click="toggleActive" class="btn btn-info btn-sm mr-2">
+                    {{ $active ? 'All' : 'Active' }} tasks
+                </button>
+                <div class="w-64 d-flex justify-content-between">
+                    <div class="input-group-append">
+                        <button class="btn btn-info btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+                            Filter<span class="caret"></span>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right" style="margin: 0px;">
+                            @foreach (\App\Models\Tasktype::all() as $item)
+                                <div class="form-check checkbox ml-2">
+                                        <input wire:model.defer="tasktypes" class="form-check-input" name="tasktypes[{{ $item->id }}]" 
+                                        id="check{{ $item->id }}" type="checkbox" 
+                                        value="{{ $item->id }}">
+                                    <label class="form-check-label" for="check{{ $item->id }}">{{ $item->name }}</label>
+                                </div>
+                            @endforeach
+                            <a wire:click.prevent="render" href="" class="text-info ml-2 mt-2">Apply</a>
+                            <a wire:click.prevent="clear" href="" class="text-info ml-2 mt-2">Clear</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="w-64 d-flex justify-content-between">
                 <input wire:model.debounce.600ms="search" class="form-control form-control-sm" id="search" type="text" placeholder="search">
                 <button wire:click="clearSearch" class="ml-2 btn btn-square btn-sm btn-light">Clear</button>

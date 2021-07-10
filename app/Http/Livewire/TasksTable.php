@@ -17,6 +17,7 @@ class TasksTable extends Component
     public $sortField = '';
     public $active = true;
     public $search;
+    public $tasktypes = [];
 
     protected $listeners = [
         'taskAssigned',
@@ -51,6 +52,11 @@ class TasksTable extends Component
         $this->search = null;
     }
 
+    public function clear()
+    {
+        $this->tasktypes = [];
+    }
+
     public function render()
     {
         if (is_null($this->project)) {
@@ -75,6 +81,9 @@ class TasksTable extends Component
             ->when($this->sortField, function ($query) {
                 return $query->orderBy($this->sortField, $this->sort ? 'asc' : 'desc');
             })
+            ->when($this->tasktypes, function($query) {
+                return $query->where('tasktype_id', $this->tasktypes);
+            })
             ->paginate(10);
     }
 
@@ -90,6 +99,9 @@ class TasksTable extends Component
             })
             ->when($this->sortField, function ($query) {
                 return $query->orderBy($this->sortField, $this->sort ? 'asc' : 'desc');
+            })
+            ->when($this->tasktypes, function($query) {
+                return $query->whereIn('tasktype_id', $this->tasktypes);
             })
             ->paginate(10);
     }
