@@ -72,7 +72,7 @@
                                 @endif
                             </a>
                             <small class="text-danger italic">
-                                {{ $task->project->title }}
+                                {{ $project ? $project->title : $task->project->title }}
                             </small>
                         </div>
                     </td>
@@ -121,7 +121,7 @@
                             @endcan
                             @can('delete', $task)
                             <div class="w-4 mr-2">
-                                <form id="deleteTask{{$task->id}}" action="{{ route('projects.tasks.destroy', [$$project ?? $task->project, $task]) }}" method="POST" class="d-none">
+                                <form id="deleteTask{{$task->id}}" action="{{ route('projects.tasks.destroy', [$project ?? $task->project, $task]) }}" method="POST" class="d-none">
                                     @csrf
                                     @method('DELETE')
                                 </form>

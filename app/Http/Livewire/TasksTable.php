@@ -68,41 +68,25 @@ class TasksTable extends Component
         return view('livewire.tasks-table', compact('tasks'));
     }
 
+    public function filters()
+    {
+        return [
+            'active' => $this->active,
+            'sortField' => $this->sortField,
+            'tasktypes' => $this->tasktypes,
+            'search' => $this->search,
+        ];
+    }
+
     public function tasks()
     {
-        return $this->project->tasks()
-            ->with(['project', 'tasktype', 'user', 'status', 'priority'])
-            ->when($this->active, function ($query) {
-                return $query->whereNull('finished_at');
-            })
-            ->when($this->search, function ($query) {
-                return $query->where('title', 'LIKE', '%'.$this->search.'%');
-            })
-            ->when($this->sortField, function ($query) {
-                return $query->orderBy($this->sortField, $this->sort ? 'asc' : 'desc');
-            })
-            ->when($this->tasktypes, function($query) {
-                return $query->where('tasktype_id', $this->tasktypes);
-            })
-            ->paginate(10);
+        return $this->project->tasks()->filter($this->filters())
+                ->paginate(10);
     }
 
     public function userTasks()
     {
-        return auth()->user()->tasks()
-            ->with('project', 'user', 'tasktype', 'priority', 'status')
-            ->when($this->active, function ($query) {
-                return $query->whereNull('finished_at');
-            })
-            ->when($this->search, function ($query) {
-                return $query->where('title', 'LIKE', '%'.$this->search.'%');
-            })
-            ->when($this->sortField, function ($query) {
-                return $query->orderBy($this->sortField, $this->sort ? 'asc' : 'desc');
-            })
-            ->when($this->tasktypes, function($query) {
-                return $query->whereIn('tasktype_id', $this->tasktypes);
-            })
-            ->paginate(10);
+        return auth()->user()->tasks()->filter($this->filters())
+                ->paginate(10);
     }
 }

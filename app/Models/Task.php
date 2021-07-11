@@ -54,4 +54,22 @@ class Task extends Model
     {
         return $this->belongsTo(Priority::class);
     }
+
+    public function scopeFilter($query, array $filters)
+    {
+        return 
+            $query->with(['project', 'tasktype', 'user', 'status', 'priority'])
+                ->when($filters['active'], function ($query) {
+                    return $query->whereNull('finished_at');
+                })
+                ->when($filters['search'], function ($query, $search) {
+                    return $query->where('title', 'LIKE', '%'.$search.'%');
+                })
+                ->when($filters['sortField'], function ($query, $search) {
+                    return $query->orderBy($search, $this->sort ? 'asc' : 'desc');
+                })
+                ->when($filters['tasktypes'], function($query, $search) {
+                    return $query->where('tasktype_id', $search);
+                });
+    }
 }
