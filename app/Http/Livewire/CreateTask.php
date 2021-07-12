@@ -58,13 +58,11 @@ class CreateTask extends Component
 
         $this->project->tasks()->create($this->loadData());
 
-        session()->flash('task-message', 'Task successfully added');
-
         $this->resetAll();
 
         $this->emitTo('tasks-table', 'taskAdded');
-        $this->emitTo('tasks-table', 'taskNew');
 
+        $this->dispatchBrowserEvent('swal', ['title' => 'Task successfully added']);
         $this->dispatchBrowserEvent('closeModal');
     }
 

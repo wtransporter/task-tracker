@@ -184,11 +184,23 @@
     @include('sweetalert::alert')
 
     <script>
-        document.addEventListener('flash', function() {
-            Swal.fire({
-                title: 'Test'
-            });
+        window.addEventListener('swal', function(e) {
+            console.log(e.detail);
+            const Toast = Swal.mixin({
+            toast: true,
+            position: 'bottom-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            icon: 'success',
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+            })
+            Toast.fire(e.detail);
         });
+        
         moment.updateLocale('en', {
             week: {dow: 1} // Monday is the first day of the week
         })
