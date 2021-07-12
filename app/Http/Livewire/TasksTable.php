@@ -18,6 +18,7 @@ class TasksTable extends Component
     public $active = true;
     public $search;
     public $tasktypes = [];
+    public $apply = false;
 
     protected $listeners = [
         'taskAssigned',
@@ -55,6 +56,12 @@ class TasksTable extends Component
     public function clear()
     {
         $this->tasktypes = [];
+        $this->apply = false;
+    }
+
+    public function applyFilter()
+    {
+        $this->apply = true;
     }
 
     public function render()
@@ -65,7 +72,10 @@ class TasksTable extends Component
             $tasks = $this->tasks();
         }
 
-        return view('livewire.tasks-table', compact('tasks'));
+        return view('livewire.tasks-table', [
+            'tasks' => $tasks
+                ->with(['project', 'tasktype', 'user', 'status', 'priority'])
+                ->paginate(10)]);
     }
 
     public function filters()
@@ -80,13 +90,11 @@ class TasksTable extends Component
 
     public function tasks()
     {
-        return $this->project->tasks()->filter($this->filters())
-                ->paginate(10);
+        return $this->project->tasks()->filter($this->filters());
     }
 
     public function userTasks()
     {
-        return auth()->user()->tasks()->filter($this->filters())
-                ->paginate(10);
+        return auth()->user()->tasks()->filter($this->filters());
     }
 }

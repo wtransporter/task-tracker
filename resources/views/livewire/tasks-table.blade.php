@@ -12,7 +12,7 @@
                             Filter<span class="caret"></span>
                         </button>
                         <div class="dropdown-menu dropdown-menu-right" style="margin: 0px;">
-                            @foreach (\App\Models\Tasktype::all() as $item)
+                            @foreach ($allTasktypes as $item)
                                 <div class="form-check checkbox ml-2">
                                         <input wire:model.defer="tasktypes" class="form-check-input" name="tasktypes[{{ $item->id }}]" 
                                         id="check{{ $item->id }}" type="checkbox" 
@@ -20,7 +20,7 @@
                                     <label class="form-check-label" for="check{{ $item->id }}">{{ $item->name }}</label>
                                 </div>
                             @endforeach
-                            <a wire:click.prevent="render" href="" class="text-info ml-2 mt-2">Apply</a>
+                            <a wire:click.prevent="applyFilter" href="#" class="text-info ml-2 mt-2">Apply</a>
                             <a wire:click.prevent="clear" href="" class="text-info ml-2 mt-2">Clear</a>
                         </div>
                     </div>

@@ -58,8 +58,7 @@ class Task extends Model
     public function scopeFilter($query, array $filters)
     {
         return 
-            $query->with(['project', 'tasktype', 'user', 'status', 'priority'])
-                ->when($filters['active'], function ($query) {
+            $query->when($filters['active'], function ($query) {
                     return $query->whereNull('finished_at');
                 })
                 ->when($filters['search'], function ($query, $search) {

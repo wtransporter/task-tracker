@@ -6,7 +6,9 @@ use App\Models\User;
 use App\Models\Status;
 use App\Models\Category;
 use App\Models\Priority;
+use App\Models\Tasktype;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -47,12 +49,17 @@ class AppServiceProvider extends ServiceProvider
             $priorities = \Cache::rememberForever('priorities', function () {
                 return Priority::all();
             });
+
+            $allTasktypes = Cache::remember('task-types', 60*5, function() {
+                return Tasktype::all();
+            });
             
             $view->with('categories', $categories);
             $view->with('taskTypes', $taskTypes);
             $view->with('allUsers', $allUsers);
             $view->with('statuses', $statuses);
             $view->with('priorities', $priorities);
+            $view->with('allTasktypes', $allTasktypes);
         });
 
         Paginator::useBootstrap();
