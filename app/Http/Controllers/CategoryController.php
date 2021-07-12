@@ -43,7 +43,7 @@ class CategoryController extends Controller
 
         Category::create($attributes);
 
-        return redirect()->route('categories.index')->with('message', 'New category created');
+        return redirect()->route('categories.index')->with('toast_success', 'New category created');
     }
 
     /**
@@ -71,7 +71,7 @@ class CategoryController extends Controller
 
         $category->update($attributes);
 
-        return redirect()->route('categories.index')->with('message', 'Category successfully updated.');
+        return redirect()->route('categories.index')->with('toast_success', 'Category successfully updated.');
     }
 
     /**
@@ -85,6 +85,6 @@ class CategoryController extends Controller
 
         $category->delete();
 
-        return redirect()->route('categories.index')->with('message', 'Category successfully deleted.');
+        return redirect()->route('categories.index')->with('toast_success', 'Category successfully deleted.');
     }
 }

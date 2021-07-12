@@ -18,6 +18,6 @@ class ProjectInvitationController extends Controller
     {
         $project->invite($request->get('users'));
 
-        return redirect()->route('projects.edit', $project)->with('message', 'User added/removed to project.');
+        return redirect()->route('projects.edit', $project)->with('toast_success', 'User added/removed to project.');
     }
 }

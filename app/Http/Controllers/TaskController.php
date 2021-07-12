@@ -69,7 +69,7 @@ class TaskController extends Controller
 
         $task->update($attributes);
 
-        return redirect()->route('projects.tasks.edit', [$project, $task])->with('task-message', 'Task updated');
+        return redirect()->route('projects.tasks.edit', [$project, $task])->with('toast_success', 'Task updated');
     }
 
     /**
@@ -85,6 +85,6 @@ class TaskController extends Controller
 
         $task->delete();
 
-        return redirect()->route('projects.tasks.create', $project)->with('task-message', 'Task delted');
+        return redirect()->route('projects.tasks.index', $project)->with('toast_success', 'Task delted');
     }
 }

@@ -180,7 +180,15 @@
     <script src="{{ asset('js/coreui.bundle.min.js') }}"></script>
     @livewireScripts
 
+    <!-- Sweetalert -->
+    @include('sweetalert::alert')
+
     <script>
+        document.addEventListener('flash', function() {
+            Swal.fire({
+                title: 'Test'
+            });
+        });
         moment.updateLocale('en', {
             week: {dow: 1} // Monday is the first day of the week
         })

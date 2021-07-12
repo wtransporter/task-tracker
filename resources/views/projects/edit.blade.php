@@ -4,7 +4,6 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
-                        <x-message class="m-3" />
                         <x-error class="m-3"/>
                         <div class="card-header d-flex justify-content-between align-items-center">
                             <span>{{ __('Manage Project') }}</span>

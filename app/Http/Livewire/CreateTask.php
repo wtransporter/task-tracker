@@ -63,6 +63,7 @@ class CreateTask extends Component
         $this->resetAll();
 
         $this->emitTo('tasks-table', 'taskAdded');
+        $this->emitTo('tasks-table', 'taskNew');
 
         $this->dispatchBrowserEvent('closeModal');
     }
