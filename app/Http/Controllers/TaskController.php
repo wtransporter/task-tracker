@@ -29,7 +29,7 @@ class TaskController extends Controller
      */
     public function show(Project $project, Task $task)
     {
-        $task->load(['user', 'comments', 'comments.user']);
+        $task->load(['user', 'adjustments']);
 
         return view('tasks.show', compact('project', 'task'));
     }
@@ -44,7 +44,7 @@ class TaskController extends Controller
     public function edit(Project $project, Task $task)
     {
         $this->authorize('update', $task);
-        $task->load(['comments', 'comments.user']);
+        $task->load(['adjustments']);
 
         return view('tasks.edit', ['project' => $project, 'task' => $task]);
     }

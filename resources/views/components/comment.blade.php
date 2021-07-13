@@ -25,33 +25,49 @@
     <div class="card-body">
         <table class="table table-responsive-sm table-striped">
             <tbody>
-                @forelse ($task->comments as $comment)
+                @forelse ($task->adjustments as $adjustment)
                 <tr>
                     <td class="p-0 w-12" style="vertical-align: middle;">
                         <div class="c-avatar d-flex align-items-center p-1">
                             <img class="c-avatar-img" src=" {{ asset('assets/img/avatars/6.jpg') }}" alt="user@email.com">
                         </div>
                     </td>
-                    <td class="p-0" style="vertical-align: middle;">
+                    <td class="p-0 py-2" style="vertical-align: middle;">
                         <div>
-                            {{ $comment->description }}
+                            @if (isset($adjustment->pivot->description))
+                                {{ $adjustment->pivot->description }}
+                            @else
+                                <?php
+                                    $before = json_decode($adjustment->pivot->before);
+                                    $after = json_decode($adjustment->pivot->after);
+                                ?>
+                                @foreach ($before as $key => $value)
+                                    @if(View::exists('tasks.adjustments.' . $key))
+                                        {{ $adjustment->name }}
+                                        @include('tasks.adjustments.' . $key) <br>
+                                    @else
+                                        {{ $adjustment->name }}
+                                        @include('tasks.adjustments.default') <br>
+                                    @endif
+                                @endforeach
+                            @endif
                         </div>
                     </td>
                     <td class="p-0" style="vertical-align: middle;">
                         <small>
-                            {{ $comment->created_at->format('d.m.Y H:i:s') }}
+                            {{ $adjustment->pivot->created_at->format('d.m.Y H:i:s') }}
                         </small>
                     </td>
                     <td class="p-0" style="vertical-align: middle;">
                         <span class="badge badge-success">
-                            {{ $comment->user->name }}
+                            {{ $adjustment->name }}
                         </span>
                     </td>
                 </tr>
                 @empty
                     <tr>
                         <div class="alert alert-danger">
-                            No comments yet
+                            No changes yet
                         </div>
                     </tr>
                 @endforelse

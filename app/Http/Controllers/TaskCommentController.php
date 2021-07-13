@@ -17,10 +17,9 @@ class TaskCommentController extends Controller
     public function store(Task $task, Request $request)
     {
         $attributes = $request->validate(['description' => 'required']);
-        $attributes = array_merge(['user_id' => auth()->id()], $attributes);
 
-        $task->comments()->create($attributes);
+        $task->adjustments()->attach(auth()->id(), $attributes);
 
-        return redirect()->back()->with(['project' => $task->project, 'task' => $task])->with('message', 'You left comment');
+        return redirect()->back()->with(['project' => $task->project, 'task' => $task])->with('toast_success', 'You left note');
     }
 }

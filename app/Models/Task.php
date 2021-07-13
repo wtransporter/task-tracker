@@ -25,6 +25,32 @@ class Task extends Model
         'finished_at'
     ];
 
+    public static function boot()
+    {
+        parent::boot();
+
+        static::updating(function($task) {
+            $task->trackChange();
+        });
+    }
+
+    public function trackChange($userId = null)
+    {
+        $userId = $userId ?: Auth()->id();
+        
+        $this->adjustments()->attach($userId, $this->getDiff());
+    }
+
+    public function getDiff()
+    {
+        $changed = $this->getDirty();
+
+        $before = json_encode(array_intersect_key($this->fresh()->toArray(), $changed));
+        $after = json_encode($changed);
+
+        return compact('before', 'after');
+    }
+
     public function project()
     {
         return $this->belongsTo(Project::class);
@@ -40,9 +66,11 @@ class Task extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function comments()
+    public function adjustments()
     {
-        return $this->hasMany(Comment::class)->latest();
+        return $this->belongsToMany(User::class, 'comments')
+            ->withTimestamps()
+            ->withPivot(['description', 'before', 'after']);
     }
 
     public function status()
