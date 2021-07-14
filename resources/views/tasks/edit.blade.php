@@ -118,10 +118,23 @@
                                             <input value="{{ $task->started_at ? $task->started_at->format('d-m-Y H:i:s') : '' }}" class="form-control datetime" name="started_at" id="started_at">
                                         </div>
                                     </div>
+                                    <div class="col-sm-12 col-lg-12">
+                                        <div class="card-header">{{ __('Note') }}</div>
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <div class="form-group">
+                                                        <textarea class="form-control" name="note" rows="5"
+                                                                type="text">{{ old('description') }}</textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="card-footer">
-                                <button class="btn btn-sm btn-info" type="submit"> {{ __('Update Task') }}</button>
+                                <button class="btn btn-sm btn-info" type="submit"> {{ __('Submit') }}</button>
                             </div>
                         </form>
                     </div>

@@ -1,27 +1,6 @@
 @props(['task'])
 
 <div class="card">
-    <div class="card-header">
-        <form
-            action="{{ route('tasks.comments.store', $task) }}" method="POST">
-            @csrf
-            <div class="card-header">{{ __('Note') }}</div>
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <textarea class="form-control" name="description" rows="5"
-                                    type="text">{{ old('description') }}</textarea>
-                        </div>
-                        <div class="form-group">
-                            <button class="btn btn-info btn-sm">Submit</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </form>
-    </div>
-
     <div class="card-body">
         <table class="table table-responsive-sm table-striped">
             <tbody>
@@ -34,34 +13,33 @@
                     </td>
                     <td class="p-0 py-2" style="vertical-align: middle;">
                         <div>
-                            @if (isset($adjustment->pivot->description))
-                                {{ $adjustment->pivot->description }}
-                            @else
-                                <?php
-                                    $before = json_decode($adjustment->pivot->before);
-                                    $after = json_decode($adjustment->pivot->after);
-                                ?>
+                            <?php
+                                $before = json_decode($adjustment->pivot->before);
+                                $after = json_decode($adjustment->pivot->after);
+                            ?>
+                            Updated by
+                            <span class="badge badge-success">
+                                {{ $adjustment->name }}
+                            </span>
+                            {{ $adjustment->pivot->updated_at->diffForHumans() }}<br>
+                            <hr class="mr-2 mt-2">
+                            @if (!is_null($before))
+                                <ul>
                                 @foreach ($before as $key => $value)
+                                    <li>
                                     @if(View::exists('tasks.adjustments.' . $key))
-                                        {{ $adjustment->name }}
                                         @include('tasks.adjustments.' . $key) <br>
                                     @else
-                                        {{ $adjustment->name }}
                                         @include('tasks.adjustments.default') <br>
                                     @endif
+                                    </li>
                                 @endforeach
+                                </ul>
+                            @endif
+                            @if (isset($adjustment->pivot->description))
+                                {{ $adjustment->pivot->description }}<br>
                             @endif
                         </div>
-                    </td>
-                    <td class="p-0" style="vertical-align: middle;">
-                        <small>
-                            {{ $adjustment->pivot->created_at->format('d.m.Y H:i:s') }}
-                        </small>
-                    </td>
-                    <td class="p-0" style="vertical-align: middle;">
-                        <span class="badge badge-success">
-                            {{ $adjustment->name }}
-                        </span>
                     </td>
                 </tr>
                 @empty

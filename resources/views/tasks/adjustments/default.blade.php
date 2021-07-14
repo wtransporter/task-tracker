@@ -1,6 +1,5 @@
-    changed 
     @php 
         $name = explode('_', $key);
-        echo $name[0];
+        echo ucfirst($name[0]) . ' changed from';
     @endphp
-    from <strong>{{ $value ?? 'Undefined' }}</strong> to <strong>{{ $after->$key }}</strong>
+    <strong>{{ $value ?? 'Undefined' }}</strong> to <strong>{{ $after->$key }}</strong>

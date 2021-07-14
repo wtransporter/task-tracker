@@ -30,15 +30,19 @@ class Task extends Model
         parent::boot();
 
         static::updating(function($task) {
-            $task->trackChange();
+            $task->trackChange(null, ['description' => $task->note]);
         });
     }
 
-    public function trackChange($userId = null)
+    public function trackChange($userId = null, array $data)
     {
+        unset($this->note);
+
         $userId = $userId ?: Auth()->id();
-        
-        $this->adjustments()->attach($userId, $this->getDiff());
+
+        $data = array_merge($this->getDiff(), $data);
+
+        $this->adjustments()->attach($userId, $data);
     }
 
     public function getDiff()
