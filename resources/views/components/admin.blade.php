@@ -85,7 +85,7 @@
                     <a class="c-header-nav-link" data-toggle="dropdown" href="#"
                         role="button" aria-haspopup="true" aria-expanded="false">
                         <div class="c-avatar">
-                            <img class="c-avatar-img" src="{{ asset('assets/img/avatars/6.jpg') }}"
+                            <img class="c-avatar-img" src="{{ Auth::user()->avatar ? asset('storage') .'/'. Auth::user()->avatar : asset('img/no-image.png') }}"
                                 alt="user@email.com">
                         </div>
                     </a>

@@ -6,9 +6,9 @@
             <tbody>
                 @forelse ($task->adjustments as $adjustment)
                 <tr>
-                    <td class="p-0 w-12" style="vertical-align: middle;">
+                    <td class="p-0 w-14" style="vertical-align: middle;">
                         <div class="c-avatar d-flex align-items-center p-1">
-                            <img class="c-avatar-img" src=" {{ asset('assets/img/avatars/6.jpg') }}" alt="user@email.com">
+                            <img class="c-avatar-img" src="{{ $adjustment->avatar ? asset('storage') .'/'. $adjustment->avatar : asset('img/no-image.png') }}" alt="Avatar">
                         </div>
                     </td>
                     <td class="p-0 py-2" style="vertical-align: middle;">

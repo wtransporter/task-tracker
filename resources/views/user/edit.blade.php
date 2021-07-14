@@ -4,6 +4,7 @@
             <div class="col-sm-6">
                 <div class="card">
                     <x-message class="m-3" />
+                    @livewire('upload-image', ['user' => $user], key($user->id))
                     <form action="{{ route('user.update', [$user]) }}" method="POST">
                         @csrf
                         @method('PATCH')
