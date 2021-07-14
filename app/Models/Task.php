@@ -49,6 +49,10 @@ class Task extends Model
     {
         $changed = $this->getDirty();
 
+        if(empty($changed)) {
+            return [];
+        };
+        
         $before = json_encode(array_intersect_key($this->fresh()->toArray(), $changed));
         $after = json_encode($changed);
 
