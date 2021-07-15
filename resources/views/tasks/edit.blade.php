@@ -49,7 +49,7 @@
                                         <div class="form-group">
                                             <label for="description">{{ __('Description') }}</label>
                                             
-                                                <textarea class="form-control" 
+                                                <textarea class="form-control my-editor" 
                                                     name="description" 
                                                     rows="5" 
                                                     id="task-textarea"
@@ -124,7 +124,7 @@
                                             <div class="row">
                                                 <div class="col-sm-12">
                                                     <div class="form-group">
-                                                        <textarea class="form-control" name="note" rows="5"
+                                                        <textarea class="form-control my-editor" name="note" rows="5"
                                                                 type="text">{{ old('description') }}</textarea>
                                                     </div>
                                                 </div>

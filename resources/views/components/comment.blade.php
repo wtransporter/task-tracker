@@ -37,7 +37,7 @@
                                 </ul>
                             @endif
                             @if (isset($adjustment->pivot->description))
-                                {{ $adjustment->pivot->description }}<br>
+                                {!! $adjustment->pivot->description !!}<br>
                             @endif
                         </div>
                     </td>

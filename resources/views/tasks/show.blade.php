@@ -42,8 +42,8 @@
                                 <div class="d-flex w-100 justify-content-between align-items-center">
                                     <h5 class="my-2">{{ $task->title }}</h5><span class="text-info">{{ $task->created_at->diffForHumans() }}</span>
                                 </div>
-                                <p class="my-3">
-                                    {{ $task->description }}
+                                <p class="mb-3">
+                                    {!! $task->description !!}
                                 </p>
                             </div>
                             <div class="d-flex flex-column flex-md-row">
