@@ -6,23 +6,25 @@
             <tbody>
                 @forelse ($task->adjustments as $adjustment)
                 <tr>
-                    <td class="p-0 w-14" style="vertical-align: middle;">
-                        <div class="c-avatar d-flex align-items-center p-1">
-                            <img class="c-avatar-img" src="{{ $adjustment->avatar ? asset('storage') .'/'. $adjustment->avatar : asset('img/no-image.png') }}" alt="Avatar">
-                        </div>
-                    </td>
                     <td class="p-0 py-2" style="vertical-align: middle;">
+                        <div class="d-flex">
+                            <div class="c-avatar d-flex align-items-center p-1 w-12">
+                                <img class="c-avatar-img" src="{{ $adjustment->avatar ? asset('storage') .'/'. $adjustment->avatar : asset('img/no-image.png') }}" alt="Avatar">
+                            </div>
+                            <div class="w-full">
+                                <?php
+                                    $before = json_decode($adjustment->pivot->before);
+                                    $after = json_decode($adjustment->pivot->after);
+                                ?>
+                                Updated by
+                                <span class="badge badge-success">
+                                    {{ $adjustment->name }}
+                                </span>
+                                {{ $adjustment->pivot->updated_at->diffForHumans() }}<br>
+                                <hr class="mr-2 mt-2">
+                            </div>
+                        </div>
                         <div>
-                            <?php
-                                $before = json_decode($adjustment->pivot->before);
-                                $after = json_decode($adjustment->pivot->after);
-                            ?>
-                            Updated by
-                            <span class="badge badge-success">
-                                {{ $adjustment->name }}
-                            </span>
-                            {{ $adjustment->pivot->updated_at->diffForHumans() }}<br>
-                            <hr class="mr-2 mt-2">
                             @if (!is_null($before))
                                 <ul>
                                 @foreach ($before as $key => $value)
@@ -30,7 +32,7 @@
                                     @if(View::exists('tasks.adjustments.' . $key))
                                         @include('tasks.adjustments.' . $key) <br>
                                     @else
-                                        @include('tasks.adjustments.default') <br>
+                                        @include('tasks.adjustments.default')
                                     @endif
                                     </li>
                                 @endforeach
