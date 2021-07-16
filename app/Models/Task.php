@@ -13,6 +13,13 @@ class Task extends Model
     protected $guarded = [];
 
     /**
+     * All of the relationships to be touched.
+     *
+     * @var array
+     */
+    protected $touches = ['project'];
+
+    /**
      * The attributes that should be mutated to dates.
      *
      * @var array

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Project;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -25,8 +26,9 @@ class HomeController extends Controller
     public function index()
     {
         if (auth()->user()->is_admin) {
-            $projects = Project::with('categories')->withCount(['tasks', 'completedTasks'])
-                ->latest()
+            $projects = Project::with('categories')
+                ->withCount(['tasks', 'completedTasks'])
+                ->orderBy('updated_at', 'desc')
                 ->paginate(10);
         } else {
             $projects = auth()->user()->assignedProjects()
