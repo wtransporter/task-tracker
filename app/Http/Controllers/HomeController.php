@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Services\AdminPostsService;
 use App\Models\Project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -21,21 +22,12 @@ class HomeController extends Controller
     /**
      * Show the application dashboard.
      *
+     * @param AdminPostsService $service
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(AdminPostsService $service)
     {
-        if (auth()->user()->is_admin) {
-            $projects = Project::with('categories')
-                ->withCount(['tasks', 'completedTasks'])
-                ->orderBy('updated_at', 'desc')
-                ->paginate(10);
-        } else {
-            $projects = auth()->user()->assignedProjects()
-                ->with('categories')->withCount(['tasks', 'completedTasks'])
-                ->latest()
-                ->paginate(10);
-        }
+        $projects = $service->handle(auth()->user());
 
         return view('pages.home', compact('projects'));
     }
