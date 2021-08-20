@@ -2,9 +2,11 @@
 
 namespace App\Models;
 
+use App\Notifications\UserAssignedToTask;
 use App\Traits\RecordsActivity;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Notification;
 
 class Task extends Model
 {
@@ -37,11 +39,11 @@ class Task extends Model
         parent::boot();
 
         static::updating(function($task) {
-            $task->trackChange(null, ['description' => $task->note]);
+            $task->trackChange(['description' => $task->note], null);
         });
     }
 
-    public function trackChange($userId = null, array $data)
+    public function trackChange(array $data, $userId = null)
     {
         unset($this->note);
 
@@ -50,6 +52,10 @@ class Task extends Model
         $data = array_merge($this->getDiff(), $data);
 
         $this->adjustments()->attach($userId, $data);
+
+        if($this->isDirty('user_id')) {
+            Notification::send($this->user, new UserAssignedToTask($this));
+        }
     }
 
     public function getDiff()

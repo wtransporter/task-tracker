@@ -12,6 +12,7 @@ use App\Http\Controllers\PriorityController;
 use App\Http\Controllers\TasktypeController;
 use App\Http\Controllers\TaskCommentController;
 use App\Http\Controllers\ProjectInvitationController;
+use App\Http\Controllers\UserNotificationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +36,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/user-projects', [HomeController::class, 'projects'])->name('user-projects');
     Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('user.edit');
     Route::patch('/profile/{user}', [ProfileController::class, 'update'])->name('user.update');
+    Route::get('/notifications', [UserNotificationController::class, 'index'])->name('notifications');
 
     Route::group(['middleware' => ['is_admin']], function () {
         Route::resource('projects', ProjectController::class);
