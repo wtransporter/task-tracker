@@ -7,6 +7,9 @@
                         <x-message class="m-3" />
                         <x-error class="m-3" />
                         <div class="card-body">
+                            <div class="py-2">
+                                <a href="{{ route('categories.create') }}" class="btn btn-sm btn-info text-white"> {{ __('Create Category') }}</a>
+                            </div>
                             <div>
                                 <table class="table table-responsive-sm table-striped">
                                     <tbody>
