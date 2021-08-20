@@ -99,17 +99,17 @@
         </button>
             <ul class="c-header-nav d-md-down-none">
                 <li class="c-header-nav-item px-3">
-                    <a class="c-header-nav-link" href="{{ route('home') }}">
+                    <a class="c-header-nav-link {{ request()->routeIs('home') ? 'text-primary' : '' }}" href="{{ route('home') }}">
                         {{ __('Dashboard') }}
                     </a>
                 </li>
                 <li class="c-header-nav-item px-3">
-                    <a class="c-header-nav-link" href="{{ route('user-tasks') }}">
+                    <a class="c-header-nav-link {{ request()->routeIs('user-tasks') ? 'text-primary' : '' }}" href="{{ route('user-tasks') }}">
                         {{ __('My Tasks') }}
                     </a>
                 </li>
                 <li class="c-header-nav-item px-3">
-                    <a class="c-header-nav-link" href="{{ route('activities') }}">
+                    <a class="c-header-nav-link {{ request()->routeIs('activities') ? 'text-primary' : '' }}" href="{{ route('activities') }}">
                         {{ __('Activity Log') }}
                     </a>
                 </li>

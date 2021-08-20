@@ -25,7 +25,7 @@ use App\Http\Controllers\ProjectInvitationController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('home');
 });
 
 Route::group(['middleware' => ['auth']], function () {

@@ -141,11 +141,17 @@
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col-lg-12">
-                    <x-comment :task="$task"/>
+            @if ($task->adjustments->count() > 0)
+                <div class="row">
+                    <div class="col-lg-12">
+                        <x-comment :task="$task"/>
+                    </div>
                 </div>
-            </div>
+            @else
+                <div class="alert alert-danger">
+                    No changes yet
+                </div>
+            @endif
         </div>
     </div>
 </x-admin>
