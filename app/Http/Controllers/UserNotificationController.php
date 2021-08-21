@@ -10,4 +10,18 @@ class UserNotificationController extends Controller
 
         return view('user.notification.index', compact('notifications'));
     }
+
+    public function store($id)
+    {
+        auth()->user()->notifications->where('id', $id)->markAsRead();
+
+        return redirect()->route('notifications');
+    }
+
+    public function readAll()
+    {
+        auth()->user()->notifications->markAsRead();
+
+        return redirect()->route('notifications');
+    }
 }

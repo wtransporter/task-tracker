@@ -24,7 +24,8 @@
         integrity="sha512-n+g8P11K/4RFlXnx2/RW1EZK25iYgolW6Qn7I0F96KxJibwATH3OoVCQPh/hzlc4dWAwplglKX8IVNVMWUUdsw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="{{ asset('css/style.css') }}"/>
-    <script src="{{ asset('js/tinymce/tinymce.min.js') }}"></script>   
+    <script src="{{ asset('js/tinymce/tinymce.min.js') }}"></script>
+    <script src="//unpkg.com/alpinejs" defer></script>
     @livewireStyles
 
     <script>

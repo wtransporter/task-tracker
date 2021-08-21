@@ -37,6 +37,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('user.edit');
     Route::patch('/profile/{user}', [ProfileController::class, 'update'])->name('user.update');
     Route::get('/notifications', [UserNotificationController::class, 'index'])->name('notifications');
+    Route::post('/notifications/{id}/store', [UserNotificationController::class, 'store'])->name('notifications.store');
+    Route::post('/notifications/read', [UserNotificationController::class, 'readAll'])->name('notifications.read');
 
     Route::group(['middleware' => ['is_admin']], function () {
         Route::resource('projects', ProjectController::class);
