@@ -44,7 +44,7 @@ class ProjectController extends Controller
             ->create($request->only(['title', 'content', 'note']));
         $project->categories()->attach($request->categories);
 
-        return redirect()->route('projects.index')->with('message', 'New project created');
+        return redirect()->route('projects.tasks.index', $project->id)->with('message', 'New project created');
     }
 
     /**

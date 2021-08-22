@@ -7,13 +7,16 @@
                         <x-message class="m-3" />
                         <x-error class="m-3" />
                         <div class="card-body">
+                            <div class="py-2">
+                                <a href="{{ route('projects.create') }}" class="btn btn-sm btn-info text-white"> {{ __('Create Project') }}</a>
+                            </div>
                             <table class="table table-responsive-sm table-striped">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
+                                        <th>Title</th>
                                         <th>Owner</th>
                                         <th>Date created</th>
-                                        <th>Title</th>
                                         <th>Done/Total</th>
                                         <th>Status</th>
                                         <th>Action</th>
@@ -23,9 +26,13 @@
                                     @foreach ($projects as $project)
                                         <tr>
                                             <td><strong>{{ $project->id }}</strong></td>
+                                            <td>
+                                                <a href="{{ route('projects.tasks.index', $project->id) }}">
+                                                    {{ $project->title }}
+                                                </a>
+                                            </td>
                                             <td>{{ $project->user->name }}</td>
                                             <td>{{ $project->created_at }}</td>
-                                            <td>{{ $project->title }}</td>
                                             <td>
                                                 <span class="badge badge-info">
                                                     {{ $project->completed_tasks_count . '/' . $project->tasks_count }}
