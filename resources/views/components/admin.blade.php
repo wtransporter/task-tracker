@@ -120,7 +120,7 @@
                     <a class="c-header-nav-link {{ request()->routeIs('notifications') ? 'text-primary' : '' }}" href="{{ route('notifications') }}">
                         <svg class="c-icon">
                             <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-bell') }}"></use>
-                        </svg><span class="badge badge-danger ml-auto">{{ auth()->user()->unreadNotifications()->count() }}</span>
+                        </svg><span class="badge badge-danger ml-auto rounded-circle">{{ $count['notifications'] }}</span>
                     </a>
                 </li>
                 <li class="c-header-nav-item d-md-down-none mx-2">
@@ -150,7 +150,7 @@
                         <a class="dropdown-item {{ request()->routeIs('notifications') ? 'text-primary' : '' }}" href="{{ route('notifications') }}">
                             <svg class="c-icon mr-2">
                                 <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-bell') }}"></use>
-                            </svg> {{ __('Updates') }}<span class="badge badge-danger ml-auto">{{ auth()->user()->unreadNotifications()->count() }}</span>
+                            </svg> {{ __('Updates') }}<span class="badge badge-danger ml-auto">{{ $count['notifications'] }}</span>
                         </a>
                         {{-- <a class="dropdown-item"
                             href="#">
@@ -161,7 +161,7 @@
                         <a class="dropdown-item {{ request()->routeIs('user-tasks') ? 'text-primary' : '' }}" href="{{ route('user-tasks') }}">
                             <svg class="c-icon mr-2">
                                 <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-task') }}"></use>
-                            </svg> {{ __('Tasks') }}<span class="badge badge-danger ml-auto">{{ auth()->user()->tasks()->whereNull('finished_at')->count() }}</span>
+                            </svg> {{ __('Tasks') }}<span class="badge badge-danger ml-auto">{{ $count['tasks'] }}</span>
                         </a>
                         {{-- <a class="dropdown-item"
                             href="#">

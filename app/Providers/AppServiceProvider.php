@@ -62,6 +62,15 @@ class AppServiceProvider extends ServiceProvider
             $view->with('allTasktypes', $allTasktypes);
         });
 
+        \View::composer('components.admin', function($view) {
+            $user = auth()->user();
+
+            $counts['notifications'] = $user->unreadNotifications()->count();
+            $counts['tasks'] = $user->activeTasks()->count();
+
+            return $view->with('count', $counts);
+        });
+
         Paginator::useBootstrap();
     }
 }

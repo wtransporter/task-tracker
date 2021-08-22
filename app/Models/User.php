@@ -62,4 +62,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Project::class, 'project_member');
     }
+
+    public function activeTasks()
+    {
+        return $this->tasks()->whereNull('finished_at');
+    }
 }
