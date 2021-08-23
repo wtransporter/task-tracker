@@ -51,10 +51,12 @@ class Task extends Model
 
         $data = array_merge($this->getDiff(), $data);
 
-        $this->adjustments()->attach($userId, $data);
+        if (!is_null($data['description'])) {
+            $this->adjustments()->attach($userId, $data);
 
-        if($this->isDirty('user_id')) {
-            Notification::send($this->user, new UserAssignedToTask($this));
+            if($this->isDirty('user_id')) {
+                Notification::send($this->user, new UserAssignedToTask($this));
+            }
         }
     }
 

@@ -118,9 +118,13 @@
                                             <input value="{{ $task->started_at ? $task->started_at->format('d-m-Y H:i:s') : '' }}" class="form-control datetime" name="started_at" id="started_at">
                                         </div>
                                     </div>
-                                    <div class="col-sm-12 col-lg-12">
-                                        <div class="card-header">{{ __('Note') }}</div>
-                                        <div class="card-body">
+                                    <div x-data="{ show: false }" class="col-sm-12 col-lg-12">
+                                        <div class="card-header">
+                                            <a @click.prevent="show = !show" href="#" class="btn btn-info text-sm btn-sm">
+                                                {{ __('Add Note') }}
+                                            </a>
+                                        </div>
+                                        <div x-show="show" class="card-body">
                                             <div class="row">
                                                 <div class="col-sm-12">
                                                     <div class="form-group">
