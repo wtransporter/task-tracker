@@ -51,7 +51,7 @@ class Task extends Model
 
         $data = array_merge($this->getDiff(), $data);
 
-        if (!is_null($data['description'])) {
+        if (isset($data['after'])) {
             $this->adjustments()->attach($userId, $data);
 
             if($this->isDirty('user_id')) {
