@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ActivityController;
+use App\Http\Controllers\BackupController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TaskController;
@@ -48,6 +49,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('priorities', PriorityController::class);
         Route::post('invitations/{project}', [ProjectInvitationController::class, 'store'])->name('invitations.store');
         Route::post('tasks/{task}/comments', [TaskCommentController::class, 'store'])->name('tasks.comments.store');
+        Route::get('backups', [BackupController::class, 'index'])->name('backups');
+        Route::post('backups', [BackupController::class, 'store'])->name('backups.store');
     });
     Route::get('activities', [ActivityController::class, 'index'])->name('activities');
     Route::resource('projects.tasks', TaskController::class)->except(['create', 'store']);

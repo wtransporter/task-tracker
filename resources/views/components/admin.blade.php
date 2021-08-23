@@ -176,12 +176,14 @@
                                 <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-user') }}"></use>
                             </svg> Profile
                         </a>
-                        {{-- <a class="dropdown-item" href="#">
+                        @if(Auth::user()->is_admin)
+                        <a class="dropdown-item" href="{{ route('backups') }}">
                             <svg class="c-icon mr-2">
                                 <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-settings') }}"></use>
                             </svg> Settings
                         </a>
-                        <a class="dropdown-item" href="#">
+                        @endif
+                        {{-- <a class="dropdown-item" href="#">
                             <svg class="c-icon mr-2">
                                 <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-credit-card') }}"></use>
                             </svg> Payments<span class="badge badge-secondary ml-auto">42</span>
