@@ -23,7 +23,7 @@ trait RecordsActivity
     public function recordActivity($event)
     {
         $this->activity()->create([
-            'user_id' =>auth()->id(),
+            'user_id' => auth()->id() ?? $this->user_id,
             'type' => $this->getActivityType($event)
         ]);
     }

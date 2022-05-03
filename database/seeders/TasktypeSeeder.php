@@ -14,10 +14,10 @@ class TasktypeSeeder extends Seeder
     public function run()
     {
         \DB::statement("INSERT INTO `tasktypes` (`name`, `created_at`, `updated_at`) values 
-            ('Feature', now(), now()),
-            ('Fix', now(), now()),
-            ('Bug', now(), now()),
-            ('Review', now(), now())"
+            ('Feature', 'info', now(), now()),
+            ('Fix', 'warning', now(), now()),
+            ('Bug', 'danger', now(), now()),
+            ('Review', 'success', now(), now())"
         );
     }
 }

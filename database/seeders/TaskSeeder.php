@@ -18,7 +18,12 @@ class TaskSeeder extends Seeder
         $projects = Project::take(3)->get();
         
         $projects->each(function($project) {
-            Task::factory(2)->create(['project_id' => $project->id]);
+            Task::factory(2)->create([
+                'user_id' => $project->user_id,
+                'project_id' => $project->id,
+                'tasktype_id' => rand(1,4),
+                'status_id' => rand(1,4)
+            ]);
         });
     }
 }
