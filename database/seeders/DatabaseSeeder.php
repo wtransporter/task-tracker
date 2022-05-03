@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             'is_admin' => true
         ]);
 
+        $this->call(PrioritySeeder::class);
         $this->call(ProjectSeeder::class);
         $this->call(TasktypeSeeder::class);
         $this->call(StatusSeeder::class);
