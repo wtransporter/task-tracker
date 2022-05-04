@@ -28,7 +28,7 @@ class Kernel extends ConsoleKernel
             $schedule->command('migrate:fresh', [
                     '--force', 
                     '--seed'
-                ])->everyMinute();
+                ])->hourly();
         }
     }
 
