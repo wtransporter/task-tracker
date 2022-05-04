@@ -24,7 +24,12 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+        if (app()->environment(['production', 'staging'])) {
+            $schedule->command('migrate:fresh', [
+                    '--force', 
+                    '--seed'
+                ])->everyMinute();
+        }
     }
 
     /**
