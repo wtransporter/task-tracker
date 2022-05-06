@@ -22,7 +22,8 @@ class TaskSeeder extends Seeder
                 'user_id' => $project->user_id,
                 'project_id' => $project->id,
                 'tasktype_id' => rand(1,4),
-                'status_id' => rand(1,4)
+                'status_id' => rand(1,4),
+                'priority_id' => rand(1,4),
             ]);
         });
     }

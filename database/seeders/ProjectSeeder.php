@@ -20,8 +20,9 @@ class ProjectSeeder extends Seeder
             ->each(function($user) {
                 $category = Category::factory()->create();
                 Project::factory(4)->create(['user_id' => $user->id])
-                    ->each(function($project) use ($category) {
+                    ->each(function($project) use ($category, $user) {
                         $project->categories()->attach(['category_id' => $category->id]);
+                        $project->invite([1, $user->id]);
             });
         });
     }

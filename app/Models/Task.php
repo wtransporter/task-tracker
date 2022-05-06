@@ -39,19 +39,30 @@ class Task extends Model
         parent::boot();
 
         static::updating(function($task) {
-            $task->trackChange(['description' => $task->note], null);
+            $description = [];
+
+            if (!is_null($task->note)) {
+                $description = ['description' => $task->note];
+            }
+
+            $task->trackChange($description, null);
         });
     }
 
     public function trackChange(array $data, $userId = null)
     {
-        unset($this->note);
-
         $userId = $userId ?: Auth()->id();
 
         $data = array_merge($this->getDiff(), $data);
 
+        if (empty($this->getDiff()) && !is_null($this->note)) {
+            $this->adjustments()->attach($userId, $data);
+        }
+
+        unset($this->note);
+
         if (isset($data['after'])) {
+
             $this->adjustments()->attach($userId, $data);
 
             if($this->isDirty('user_id')) {
