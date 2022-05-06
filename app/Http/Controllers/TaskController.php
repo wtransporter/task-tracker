@@ -83,6 +83,10 @@ class TaskController extends Controller
     {
         $this->authorize('delete', $task);
 
+        if($task->adjustments()->count() > 0) {
+            return redirect()->route('projects.tasks.index', $project)->with('toast_error', 'Task can\'t be deleted!');
+        };
+
         $task->delete();
 
         return redirect()->route('projects.tasks.index', $project)->with('toast_success', 'Task delted');
